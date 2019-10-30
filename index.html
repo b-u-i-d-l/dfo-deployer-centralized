@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+        Welcome to DFO-Deployer
+
+        <div class="chooser">
+            <div class="create">
+                <div>
+                    <label for="dfoName">DFO Name:</label>
+                    <input id="dfoName" type="text"/>
+                </div>
+                <div>
+                    <label for="tokenSymbol">Voting Token Symbol:</label>
+                    <input id="tokenSymbol" type="text"/>
+                </div>
+                <div>
+                    <label for="tokenDecimals">Voting Token Decimals:</label>
+                    <input id="tokenDecimals" type="number" min="1"/>
+                </div>
+                <div>
+                    <label for="tokenTotalSupply">Voting Token Total Supply:</label>
+                    <input id="tokenTotalSupply" type="number" min="1"/>
+                </div>
+                <div>
+                    <label for="surveyLength">Survey duration (expressed in blocks):</label>
+                    <input id="surveyLength" type="number" min="0"/>
+                </div>
+                <div>
+                    <label for="surveyValidationRulesAddress">Enter the address of the SmartContract containing the survey votes validation rules:</label>
+                    <input id="surveyValidationRulesAddress" type="text" placeholder="Enter ethereum address.."/>
+                    <a target="_blank" href="https://ropsten.etherscan.io/">Whatch ours</a>
+                </div>
+                <div>
+                    <button type="button" onclick="deploy();">Deploy</button>
+                </div>
+                <div id="messages"></div>
+            </div>
+            <div class="load">
+                Load previously deployed DFO: <input id="dfo-address" placeholder="Enter your ethereum address here..."/> &nbsp; <button type="button" onclick="loadDFO();">Load</button>
+            </div>
+        </div>
+    </body>
+</html>
