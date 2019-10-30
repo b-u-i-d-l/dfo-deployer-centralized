@@ -53,7 +53,17 @@ async function dfoMain() {
 function deploy() {
     messages();
     var data = getData();
-    console.table(data);
+    var errors = [];
+    !data.dfoName && errors.push('DFO Name is mandatory');
+    !data.tokenSymbol && errors.push('Token Symbol is mandatory');
+    data.tokenDecimals < 1 && errors.push('Token decimals must be a number greater than 1');
+    data.tokenTotalSupply < 1 && errors.push('Token total supply must be a number greater than 1');
+    data.surveyLength < 1 && errors.push('Survey Length must be a number greater than 1');
+    !data.surveyValidationRulesAddress && errors.push('Survey Validation Rules Address is mandatory and must be a valid ethereum address');
+    if(errors.length > 0) {
+        return messages('Some errors occurred:<br/><br/>- ' + errors.join('<br/>- '));
+    }
+    
 }
 
 function getData() {
@@ -64,7 +74,9 @@ function getData() {
         if(input.type !== 'text' && input.type !== 'number') {
             continue;
         }
-        data[input.id] = input.value;
+        data[input.id] = input.value.split(' ').join('');
+        input.type === 'number' && (data[input.id] = parseInt(data[input.id]));
+        input.type === 'number' && isNaN(data[input.id]) && (data[input.id] = 1);
     }
     return data;
 }
