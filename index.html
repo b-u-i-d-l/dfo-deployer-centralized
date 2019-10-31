@@ -1,45 +1,61 @@
 <html>
     <head>
         <script type="text/javascript" src="script.js"></script>
+        <link>
     </head>
     <body>
-        Welcome to DFO-Deployer
+        
+        <div class="main">
+                <article>
+                    <figure>
+                        <img src="">
+                        <h3>Decentralized Flexible Organizations are an open standard to create and manage a community based DAOs</h3>
+                        <p>you can find more information here: </p>
+                        <h3>How to start a DFO:</h3>
+                        <p><span class="BOLD">STEP 1:</span> Define the voting rules and the voting token and deploy it to generate the DFO proxy Contract</p>
+                        <p><span class="BOLD">STEP 2:</span> Set your first function, deploying a Smart Contract and go to the section "Survey". Fill the label to create a survey and request the connection to the proxy to Token Holders.</p>
+                        <p><span class="BOLD">STEP 3:</span> Vote for the Survey using your Voting Tokens in the section "Governance"</p>
+                    </figure>
+                </article>
 
-        <div class="chooser">
-            <div class="create">
-                <div>
-                    <label for="dfoName">DFO Name:</label>
-                    <input id="dfoName" type="text"/>
+            <div class="chooser">
+                    <h2><span>Hello World</span>Deploy your DFO</h2>
+                <div class="create">
+                        <div>
+                            <label for="dfoName">DFO Name:</label>
+                            <input id="dfoName" type="text"/>
+                        </div>
+                        <div>
+                            <label for="tokenSymbol">Voting Token Symbol:</label>
+                            <input id="tokenSymbol" type="text"/>
+                        </div>
+                        <div>
+                            <label for="tokenDecimals">Voting Token Decimals:</label>
+                            <input id="tokenDecimals" type="number" min="1"/>
+                        </div>
+                        <div>
+                            <label for="tokenTotalSupply">Voting Token Total Supply:</label>
+                            <input id="tokenTotalSupply" type="number" min="1"/>
+                        </div>
+                        <div>
+                            <label for="surveyLength">Survey duration (expressed in blocks):</label>
+                            <input id="surveyLength" type="number" min="0"/>
+                        </div>
+                        <div>
+                            <label for="surveyValidationRulesAddress">Enter the address of the SmartContract containing the survey votes validation rules:</label>
+                            <input id="surveyValidationRulesAddress" type="text" placeholder="Enter ethereum address.."/>
+                            <a target="_blank" href="https://ropsten.etherscan.io/">Whatch ours</a>
+                        </div>
+                        <div>
+                            <button type="button" onclick="deploy();">Deploy</button>
+                        </div>
+                        <div id="messages"></div>
+                    </div>
+                    <div class="load">
+                        Load previously deployed DFO: <input id="dfo-address" placeholder="Enter your ethereum address here..."/> &nbsp; <button type="button" onclick="loadDFO();">Load</button>
+                    </div>
                 </div>
-                <div>
-                    <label for="tokenSymbol">Voting Token Symbol:</label>
-                    <input id="tokenSymbol" type="text"/>
                 </div>
-                <div>
-                    <label for="tokenDecimals">Voting Token Decimals:</label>
-                    <input id="tokenDecimals" type="number" min="1"/>
-                </div>
-                <div>
-                    <label for="tokenTotalSupply">Voting Token Total Supply:</label>
-                    <input id="tokenTotalSupply" type="number" min="1"/>
-                </div>
-                <div>
-                    <label for="surveyLength">Survey duration (expressed in blocks):</label>
-                    <input id="surveyLength" type="number" min="0"/>
-                </div>
-                <div>
-                    <label for="surveyValidationRulesAddress">Enter the address of the SmartContract containing the survey votes validation rules:</label>
-                    <input id="surveyValidationRulesAddress" type="text" placeholder="Enter ethereum address.."/>
-                    <a target="_blank" href="https://ropsten.etherscan.io/">Whatch ours</a>
-                </div>
-                <div>
-                    <button type="button" onclick="deploy();">Deploy</button>
-                </div>
-                <div id="messages"></div>
-            </div>
-            <div class="load">
-                Load previously deployed DFO: <input id="dfo-address" placeholder="Enter your ethereum address here..."/> &nbsp; <button type="button" onclick="loadDFO();">Load</button>
-            </div>
-        </div>
-    </body>
+         </div>
+ </body>
 </html>
