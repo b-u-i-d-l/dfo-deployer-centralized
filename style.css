@@ -1,0 +1,21 @@
+body { background-color:  #000000; width: 100%; height: 100%; position: relative;line-height:1; overflow: scroll; position: relative;min-height: 100%; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
+h1, h2, h3, h4, h5, h6 {font-weight: normal;}
+.main {width: 100%; background-color: transparent;}
+.main article {width: 100%; position: relative;}
+.main section {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
+.main section p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
+.main section h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}
+.main article .GIFY {width:40%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
+.main article .GIFY iframe {}
+.chooser {width: 100%; background-color: #ffffff; text-align: center;}
+
+.BOLD {font-weight: bold !important;}
+.NOEFFECT {-webkit-transition-duration: 0.0s !important; transition-duration: 0.0s !important;}
+.BLUR {-webkit-transition: -webkit-filter 100ms ease-in-out;-moz-transition: -moz-filter 100ms ease-in-out;-o-transition: -o-filter 100ms ease-in-out;-ms-transition: -ms-filter 100ms ease-in-out;transition: filter 100ms ease-in-out; -webkit-filter:blur(4px);-moz-filter: blur(4px);-o-filter: blur(4px);-ms-filter: blur(4px);filter: blur(4px);}
+.BLURHOVER:hover {-webkit-transition: -webkit-filter 100ms ease-in-out;-moz-transition: -moz-filter 100ms ease-in-out;-o-transition: -o-filter 100ms ease-in-out;-ms-transition: -ms-filter 100ms ease-in-out;transition: filter 100ms ease-in-out; -webkit-filter:blur(4px);-moz-filter: blur(4px);-o-filter: blur(4px);-ms-filter: blur(4px);filter: blur(4px);}
+.NOBLUR {-webkit-filter:blur(0px) !important;-moz-filter: blur(0px) !important;-o-filter: blur(0px) !important;-ms-filter: blur(0px) !important;filter: blur(0px) !important;}
+.OPA02 {opacity: 0.2 !important;}
+.OPA08 {opacity: 0.8 !important;}
+.OPA1 {opacity: 1 !important;}
+.HIDEO {opacity: 0 !important; display: none !important; z-index: -10000!important; text-indent: -99999999px!important;}
+.icon_circle {-webkit-border-radius: 50% !important;-webkit-border-radius: 9999999px; -moz-border-radius: 50% !important; -moz-border-radius: 9999999px; border-radius: 50% !important; border-radius: 9999999px; border-top-right-radius: 50% !important;border-top-left-radius: 50% !important;border-bottom-right-radius: 50% !important;border-bottom-left-radius: 50% !important;border-top-right-radius: 9999999px;border-top-left-radius: 9999999px;border-bottom-right-radius: 9999999px;border-bottom-left-radius: 9999999px;}
