@@ -19,3 +19,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .OPA1 {opacity: 1 !important;}
 .HIDEO {opacity: 0 !important; display: none !important; z-index: -10000!important; text-indent: -99999999px!important;}
 .icon_circle {-webkit-border-radius: 50% !important;-webkit-border-radius: 9999999px; -moz-border-radius: 50% !important; -moz-border-radius: 9999999px; border-radius: 50% !important; border-radius: 9999999px; border-top-right-radius: 50% !important;border-top-left-radius: 50% !important;border-bottom-right-radius: 50% !important;border-bottom-left-radius: 50% !important;border-top-right-radius: 9999999px;border-top-left-radius: 9999999px;border-bottom-right-radius: 9999999px;border-bottom-left-radius: 9999999px;}
+
+@media screen and (max-device-width: 900px) {
+  .main article .GIFY {width:100%;}
+}
