@@ -1,11 +1,15 @@
 body { background-color:  #000000; width: 100%; height: 100%; position: relative;line-height:1; overflow: scroll; position: relative;min-height: 100%; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
-.Main {width: 100%; background-color: transparent;}
+.Main {width: 100%; background-color: transparent; text-align: center;}
 .Main .MainAwesome {width: 100%; position: relative;}
+.Main .MainAwesome figure {text-align: left;}
 .Main .MainHow {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
 .Main .MainHow p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
 .Main .MainHow h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}
-.Main .MainAwesome .GIFY {width:40%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
+.Main .MainAwesome .GIFY {width:50%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
+.Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 90px auto;}
+.Main .MainLoad input {width: 80%; background-color: #0a0a0a; border: none; height: 90px; font-size: 30px;}
+.Main .MainLoad input:hover {width: 80%; background-color: #151515; border-bottom: 2px solid #636363;} 
 
 .Nav {width: 100%; background-color: #ffffff; text-align: center;  display: inline-block; padding: 30px 0;}
 .NavAll {width: 100%; text-align: center;  display: inline-block;}
