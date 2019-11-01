@@ -11,11 +11,11 @@ var Index = React.createClass({
         this.setState({dFOAddress: null, deploy: true });
     },
     requiredModules: [
-        './spa/deploy',
-        './spa/dFORule'
+        'spa/deploy',
+        'spa/dFORule'
     ],
     requiredScripts: [
-        './spa/messages.jsx'
+        'spa/messages.jsx'
     ],
     render() {
         return (
