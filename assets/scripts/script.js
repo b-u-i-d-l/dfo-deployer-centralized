@@ -19,7 +19,7 @@ async function enableMetamask() {
 }
 
 async function loadContext() {
-    var x = await fetch('/data/context.json');
+    var x = await fetch('data/context.json');
     window.context = await x.text();
     window.context = JSON.parse(window.context);
 };
