@@ -1,46 +1,56 @@
-var Deploy = React.createClass({
+var Propose = React.createClass({
     render() {
         return (
             <div className="chooser">
                     <h2><span className="BOLD">Hello World </span> | Deploy your DFO</h2>
                     <div className="create">
-                        <div className="special">
-                            <h4 className="BOLD">DFO</h4>
-                            <label for="dfoName">Name:</label>
-                            <input id="dfoName" type="text" />
-                        </div>
-                        <div>
-                            <h4 className="BOLD">Voting Tokens</h4>
-                            <label for="tokenSymbol">Symbol:</label>
-                            <input id="tokenSymbol" type="text" />
-                        </div>
-                        <div>
-                            <label for="tokenDecimals">Decimals:</label>
-                            <input id="tokenDecimals" type="number" min="1" />
-                        </div>
-                        <div className="special">
-                            <label for="tokenTotalSupply">Total Supply:</label>
-                            <input id="tokenTotalSupply" type="number" min="1" />
-                        </div>
-                        <div>
-                            <h4 className="BOLD">Governance Rules</h4>
-                            <label for="surveyLength">Survey Duration (Blocks):</label>
-                            <input id="surveyLength" type="number" min="0" />
-                        </div>
-                        <div className="special">
-                            <label for="surveyValidationRulesAddress">Rules Smart Contract Address:</label>
-                            <input id="surveyValidationRulesAddress" type="text" placeholder="Enter ethereum address.." />
-                            <br />
-                            <a id="defaultSurveyValidationRulesAddress" target="_blank" href="https://ropsten.etherscan.io/">Standard</a>
-                        </div>
-                        <div>
-                            <button type="button" onclick="deploy();">Deploy</button>
-                        </div>
-                        <div id="messages"></div>
-                    </div>
-                    {/*<div className="load">
-                        Load previously deployed DFO: <input id="dfo-address" placeholder="Enter your ethereum address here..." /> &nbsp; <button type="button" onclick="loadDFO();">Load</button>
-                    </div>*/}
+                    <div>
+                <h2><span className="BOLD">Propose your functionality</span></h2>
+                <div className="special">
+                    <label for="functionalityName">Name:</label>
+                    <input id="functionalityName" type="text" />
+                </div>
+                <div className="special">
+                    <label for="functionalityAddress">Address of the SmartContract containing the functionality:</label>
+                    <input id="functionalityAddress" type="text" />
+                </div>
+                <div className="special">
+                    <label for="functionalitySubmitable">Will be a submitable functionality?</label>
+                    <input id="functionalitySubmitable" type="checkbox" />
+                </div>
+                <div className="special">
+                    <label for="functionalityMethodSignature">Method signature of the functionality to call:</label>
+                    <input id="functionalityMethodSignature" type="text" />
+                </div>
+                <div className="special">
+                    <label for="functionalityOutputParameters">Insert output values of the functionality (separated by space):</label>
+                    <input id="functionalityOutputParameters" type="text" />
+                </div>
+                <div className="special">
+                    <label for="functionalityInternal">Will be an internal functionality (callable from other valid functionalities only)?</label>
+                    <input id="functionalityInternal" type="checkbox" />
+                </div>
+                <div className="special">
+                    <label for="functionalityNeedsSender">Will this functionality need the sender of the transaction?</label>
+                    <input id="functionalityNeedsSender" type="checkbox" />
+                </div>
+                <div className="special">
+                    <label for="functionalityReplace">Select the functionality that will be replaced, if any:</label>
+                    <select id="functionalityReplace">
+                        <option selected="true">NONE</option>
+                        <option>Goku</option>
+                        <option>Scooby Doo</option>
+                        <option>Mia Nonna</option>
+                        <option>Toschino</option>
+                        <option>Carote</option>
+                        <option>Vitalik Buterin</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button">Propose</button>
+                </div>
+            </div>
+                </div>
                 </div>
         );
     }

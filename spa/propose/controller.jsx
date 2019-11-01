@@ -1,4 +1,4 @@
-var DeployController = function(view) {
+var ProposeController = function(view) {
     var context = this;
     context.view = view;
 };

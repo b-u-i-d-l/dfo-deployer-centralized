@@ -12,9 +12,9 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainDeploy {display: inline-block; float: left; margin: 20px 0; font-size: 18px; color: #ffffff; text-decoration: none;}
 .Main .MainDeploy span {color: #00ff00; border-bottom: 1px solid #00ff00; font-size: 20px;}
 .Main .MainDeploy span:hover {color: #000000; border: none; background-color: #00ff00;}
-.Main .MainMsg {width: 100%; background-color: #ff0000; position: fixed; min-height: 50px; padding: 25px 0; top: 0; left: 0; z-index: 9999999;}
+.Main .MainMsg {width: 100%; background-color: #ff0000; position: fixed; min-height: 40px; padding: 15px 0; top: 0; left: 0; z-index: 9999999;}
 
-.Nav {width: 100%; background-color: #ffffff; text-align: center;  display: inline-block; padding: 30px 0;}
+.Nav {width: 100%; background-color: #f1f1f1; text-align: center;  display: inline-block; padding: 30px 0;}
 .NavAll {width: 100%; text-align: center;  display: inline-block;}
 .NavAll .NavDeploy {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
 .NavAll .NavDeploy > div {width: 70%; text-align: left; display: inline-block; padding: 15px 0;}
