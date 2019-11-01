@@ -4,15 +4,12 @@ var Index = React.createClass({
     ],
     render() {
         return (
-            <div className="main">
-                <article>
+            <div className="Main">
+                <article className="MainAwesome">
                     <figure>
                         <div className="GIFY"><iframe src="https://giphy.com/embed/cPHYguVPkcXBIM5tpX" width="100%" height="100%" style={{"position":"absolute"}} frameBorder="0" className="giphy-embed" allowFullScreen></iframe></div>
-                        <p>
-                            <a href="https://giphy.com/gifs/ethereum-alessandromltoschi-cPHYguVPkcXBIM5tpX"></a>
-                        </p>
                     </figure>
-                    <section>
+                    <section className="MainHow">
                         <p>If you never heard about it, you have to can find more information here:</p>
                         <h3><span className="BOLD">How to start a DFO:</span></h3>
                         <p><span className="BOLD">STEP 1:</span> Define the voting rules and the voting token and deploy it to generate the DFO proxy Contract</p>
@@ -20,7 +17,7 @@ var Index = React.createClass({
                         <p><span className="BOLD">STEP 3:</span> Vote for the Survey using your Voting Tokens in the section "Governance"</p>
                     </section>
                 </article>
-                <section className="navigator">
+                <section className="Nav">
                     <DFORule/>
                 </section>
             </div>

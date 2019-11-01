@@ -1,21 +1,21 @@
 body { background-color:  #000000; width: 100%; height: 100%; position: relative;line-height:1; overflow: scroll; position: relative;min-height: 100%; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
-.main {width: 100%; background-color: transparent;}
-.main article {width: 100%; position: relative;}
-.main section {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
-.main section p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
-.main section h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}
-.main article .GIFY {width:40%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
-.main article .GIFY iframe {}
+.Main {width: 100%; background-color: transparent;}
+.Main .MainAwesome {width: 100%; position: relative;}
+.Main .MainHow {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
+.Main .MainHow p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
+.Main .MainHow h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}
+.Main .MainAwesome .GIFY {width:40%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
 
-.chooser {width: 100%; background-color: #ffffff; text-align: center; padding: 30px 0; display: inline-block;}
-.chooser .create {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
-.chooser .create > div {width: 70%; text-align: left; display: inline-block; padding: 15px 0;}
-.chooser .create .special {border-bottom: 1px solid #000000;}
-.chooser .create h4 {font-size: 18px;}
-.chooser .create > div > label {width: 60%; display: inline-block; font-size: 15px;}
-.chooser .create > div > input {width: 30%; display: inline-block;height: 25px;}
-.chooser .crea button {width: 100%;height: 30px;background-color: #000000;color: #ffffff;}
+.Nav {width: 100%; background-color: #ffffff; text-align: center;  display: inline-block; padding: 30px 0;}
+.NavAll {width: 100%; text-align: center;  display: inline-block;}
+.NavAll .NavDeploy {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
+.NavAll .NavDeploy > div {width: 70%; text-align: left; display: inline-block; padding: 15px 0;}
+.NavAll .NavDeploy .special {border-bottom: 1px solid #000000;}
+.NavAll .NavDeploy h4 {font-size: 18px;}
+.NavAll .NavDeploy > div > label {width: 60%; display: inline-block; font-size: 15px;}
+.NavAll .NavDeploy > div > input {width: 30%; display: inline-block;height: 25px;}
+.NavAll .crea button {width: 100%;height: 30px;background-color: #000000;color: #ffffff;}
 
 .BOLD {font-weight: bold !important;}
 .NOEFFECT {-webkit-transition-duration: 0.0s !important; transition-duration: 0.0s !important;}

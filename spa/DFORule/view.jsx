@@ -1,9 +1,9 @@
 var DFORule = React.createClass({
     render() {
         return (
-            <div className="chooser">
+            <div className="NavAll">
+                    <div className="NavDeploy">
                     <h2><span className="BOLD">Hello World </span> | Deploy your DFO</h2>
-                    <div className="create">
                         <div className="special">
                             <h4 className="BOLD">DFO</h4>
                             <label for="dfoName">Name:</label>
