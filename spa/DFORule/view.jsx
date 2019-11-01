@@ -1,6 +1,6 @@
 var DFORule = React.createClass({
     requiredModules: [
-        "spa/run"
+        "./spa/run"
     ],
     onClick(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
@@ -9,7 +9,7 @@ var DFORule = React.createClass({
         var _this = this;
         var element = e.target.innerHTML
         ReactModuleLoader.load({
-            modules: ['spa/' + element.firstLetterToLowerCase()],
+            modules: ['./spa/' + element.firstLetterToLowerCase()],
             callback : () => _this.setState({element })
         })
     },
