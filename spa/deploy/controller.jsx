@@ -20,7 +20,7 @@ var DeployController = function (view) {
         context.view.emit('message', 'Transaction 2 of 3 - Creating Survey Block Length...', 'info');
         var mvdBlockLengthProvider = await createContract(window.context.mvdBlockLengthProviderAbi, window.context.mvdBlockLengthProviderBin, data.surveyLength);
         context.view.emit('message', 'Transaction 3 of 3 - Creating Your DFO...', 'info');
-        return await createContract(window.context.mvdAbi, window.context.mvdBin,
+        var DFO =  await createContract(window.context.mvdAbi, window.context.mvdBin,
             data.dfoName,
             data.tokenSymbol,
             data.tokenDecimals,
@@ -29,5 +29,8 @@ var DeployController = function (view) {
             mvdBlockLengthProvider.address,
             data.surveyValidationRulesAddress
         );
+        context.view.emit('message');
+        context.view.emit("loader/toggle");
+        return DFO;
     };
 };
