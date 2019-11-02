@@ -7,7 +7,7 @@ async function Main() {
 
 async function enableMetamask() {
     if (typeof ethereum === 'undefined') {
-        return alert('To use this application, you need to use Google Chrome of Firefox with Metamask Extension installed.');
+        return alert('To use this application, you need Metamask Extension installed.');
     }
     try {
         await ethereum.enable();
@@ -16,14 +16,14 @@ async function enableMetamask() {
         ethereum.on('accountsChanged', onMetamaskUpdate);
         return true;
     } catch (e) {
-        return alert('To use this application, you need to enable Metamask access.');
+        return alert('To use this application, you need to enable Metamask.');
     }
 }
 
 function onMetamaskUpdate() {
     setTimeout(function() {
         if(web3.currentProvider.chainId !== '0x1' && web3.currentProvider.chainId !== '0x3') {
-            return alert("Actually we only support Mainnet and Ropsten, please set one of these networks");
+            return alert("Actually we only support Mainnet and Ropsten.");
         }
         $.publish('metamask/update');
     });

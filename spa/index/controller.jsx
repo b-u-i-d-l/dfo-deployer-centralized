@@ -5,7 +5,7 @@ var IndexController = function(view) {
     context.tryLoadDFO = function tryLoadDFO(dFOAddress) {
         return new Promise(function(ok, ko) {
             if(!isEthereumAddress(dFOAddress)) {
-               return ko("Please insert a valid Ethereum address");
+               return ko("Insert a valid DFO Address");
             }
             var dFO = web3.eth.contract(window.context.mvdAbi).at(dFOAddress);
             dFO.getFunctionalitiesAmount(function(e, data) {
@@ -13,7 +13,7 @@ var IndexController = function(view) {
                     return ko(e.message || e);
                 }
                 if(data.toNumber() === 0) {
-                    return ko("The Provided address is not a valid DFO Smart Contract");
+                    return ko("This Address is not a DFO");
                 }
                 return ok(dFO);
             });

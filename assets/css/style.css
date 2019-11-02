@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainLoader {width: 100%; position: fixed; top: 0; left: 0; background-color: #000000f2; z-index: 8888; height: 100%; overflow: hidden;}
 .Main .MainLoader figure {text-align: center; display: inline-block; margin-top: 100px;}
 .Main .MainLoader figure > div {width: 500px; height: 500px; display: inline-block;}
-.Main .MainLoader figure > div iframe {width: 500px;height: 500px; position: relative;}
+.Main .MainLoader figure > div iframe {width: 500px;height: 500px; position: relative ;}
 .Main .MainAwesome {width: 100%; position: relative;}
 .Main .MainAwesome figure {text-align: left;}
 .Main .MainAwesome .GIFY {width:50%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
