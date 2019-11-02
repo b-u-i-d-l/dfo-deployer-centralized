@@ -27,7 +27,8 @@ var Index = React.createClass({
         'spa/dFORule'
     ],
     requiredScripts: [
-        'spa/messages.jsx'
+        'spa/messages.jsx',
+        'spa/loader.jsx'
     ],
     componentDidMount() {
         var address = '';
@@ -41,6 +42,7 @@ var Index = React.createClass({
         return (
             <div className="Main">
                 <Messages/>
+                <Loader/>
                 <article className="MainAwesome">
                     <figure>
                         <div className="GIFY"><iframe src="https://giphy.com/embed/cPHYguVPkcXBIM5tpX" width="100%" height="100%" style={{"position":"absolute"}} frameBorder="0" className="giphy-embed" allowFullScreen></iframe></div>

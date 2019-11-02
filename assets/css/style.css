@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainAwesome .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 25px; text-decoration: underline; color: #ff00ff; font-size: 18px;font-weight: bold;}
 .Main .MainAwesome .MainBtn a:hover {background-color: #ff00ff; color: #000000; text-decoration: none;}
 .Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 50px auto 90px auto;}
-.Main .MainLoad input {width: 89%; background-color: #0a0a0a; border: none; height: 90px; font-size: 35px; outline: none; color: #ffffff;}
+.Main .MainLoad input {width: 89%; background-color: #0a0a0a; border: none; height: 90px; font-size: 35px; outline: none; color: #ffff00; font-weight: lighter;}
 .Main .MainLoad input:hover, .Main .MainLoad input:focus, .Main .MainLoad input:active {background-color: #151515; border-bottom: 2px solid #ffff00; height: 90px;} 
 .Main .MainLoad button {width: 10%; border: none; background-color: #000000; height: 90px; vertical-align: top; font-size: 22px; color: #ffff00; text-decoration: underline;}
 .Main .MainLoad button:hover {background-color: #ffff00; font-weight: bold; color: #000000; text-decoration: none;}
