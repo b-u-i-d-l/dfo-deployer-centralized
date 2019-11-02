@@ -10,7 +10,7 @@ var DFORule = React.createClass({
         var element = e.target.innerHTML
         ReactModuleLoader.load({
             modules: ['spa/' + element.firstLetterToLowerCase()],
-            callback : () => _this.setState({element })
+            callback : () => _this.setState({element})
         })
     },
     render() {
@@ -22,7 +22,7 @@ var DFORule = React.createClass({
                             <li><a href="javascript:;" onClick={this.onClick}>Propose</a></li>
                             <li><a href="javascript:;" onClick={this.onClick}>Govern</a></li>
                         </ul>
-                        {React.createElement(window[(this.state && this.state.element) || 'Run'],{dFOAddress:this.props.dFOAddress})}
+                        {React.createElement(window[(this.state && this.state.element) || 'Run'],{dFO:this.props.dFO})}
                 </div>
             </section>
         );
