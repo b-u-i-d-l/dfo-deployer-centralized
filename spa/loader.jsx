@@ -4,12 +4,12 @@ var Loader=React.createClass({
             'loader/toggle' : this.onToggle
         };
     },
-    onToggle() {
-        this.setState({visible:(this.state && this.state.visible && !this.state.visible) || true });
+    onToggle(visible) {
+        this.setState({visible: (visible === true || visible === false) ? visible : this.state && this.state.visible ? !this.state.visible : true});
     },
     render() {
         return(
-            <div className="MainLoader" style={{"display" : !this.state || !this.state.visible ? "none" : "block"}}>
+            <div className="MainLoader" style={{"display" : this.state && this.state.visible ? "block" : "none"}}>
                 <figure>
                 <div><iframe src="https://giphy.com/embed/PgKXoMooutndQOOSAB" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
                 </figure>
