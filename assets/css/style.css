@@ -4,15 +4,16 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainAwesome {width: 100%; position: relative;}
 .Main .MainAwesome figure {text-align: left;}
 .Main .MainAwesome .GIFY {width:50%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
-.Main .MainAwesome h4 {font-size: 16px; text-align: center; color: #ffffff; display: inline-block; width: 100%; margin: 50px 0 0 0;}
+.Main .MainAwesome h4 {font-size: 35px; text-align: center; color: #ffffff; display: inline-block; width: 100%; margin: 50px 0 0 0; font-weight: bold;}
+.Main .MainAwesome p {font-size: 12px; text-align: center; color: #ffffff; display: inline-block; width: 500px; line-height: 1.3;}
 .Main .MainAwesome .MainBtn {width: 100%; display: inline-block; margin: 60px 0 10px 0; text-align: center; clear: both;}
-.Main .MainAwesome .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 30px; text-decoration: none; background-color: #cccccc; color: #000000; font-size: 13px;}
-.Main .MainAwesome .MainBtn a:hover {background-color: #ffffff; font-weight: bold;}
+.Main .MainAwesome .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 25px; text-decoration: underline; color: #ff00ff; font-size: 18px;font-weight: bold;}
+.Main .MainAwesome .MainBtn a:hover {background-color: #ff00ff; color: #000000; text-decoration: none;}
 .Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 50px auto 90px auto;}
 .Main .MainLoad input {width: 89%; background-color: #0a0a0a; border: none; height: 90px; font-size: 35px; outline: none; color: #ffffff;}
 .Main .MainLoad input:hover, .Main .MainLoad input:focus, .Main .MainLoad input:active {background-color: #151515; border-bottom: 2px solid #ffff00; height: 90px;} 
-.Main .MainLoad button {width: 10%; background-color: #ffff00; border: none; height: 90px; vertical-align: top; font-size: 15px;}
-.Main .MainLoad button:hover {background-color: #ffffff; font-weight: bold;}
+.Main .MainLoad button {width: 10%; border: none; background-color: #000000; height: 90px; vertical-align: top; font-size: 22px; color: #ffff00; text-decoration: underline;}
+.Main .MainLoad button:hover {background-color: #ffff00; font-weight: bold; color: #000000; text-decoration: none;}
 .Main .MainDeploy {display: inline-block; float: left; margin: 20px 0; font-size: 18px; color: #ffffff; text-decoration: none;}
 .Main .MainDeploy span {color: #00ff00; border-bottom: 1px solid #00ff00; font-size: 20px;}
 .Main .MainDeploy span:hover {color: #000000; border: none; background-color: #00ff00;}
