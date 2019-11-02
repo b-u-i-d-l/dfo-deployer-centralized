@@ -11,7 +11,9 @@ var Deploy = React.createClass({
     deploy(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
         var _this = this;
-        this.controller.deploy(getData(this.domRoot)).catch(e => _this.emit('message', e.message || e, "error"));
+        this.controller.deploy(getData(this.domRoot)).then(function(dFO) {
+            _this.emit("dfo/deploy", dFO);
+        }).catch(e => _this.emit('message', e.message || e, "error"));
     },
     render() {
         return (

@@ -1,11 +1,21 @@
 var Index = React.createClass({
+    getDefaultSubscriptions() {
+        return {
+            'dfo/deploy':  this.onDFO
+        };
+    },
+    onDFO(dFO) {
+        var _this = this;
+        _this.setState({dFO, deploy : null}, function() {
+            _this.address && (_this.address.value = dFO.address);
+            window.history.pushState({}, "", window.location.protocol + "//" + window.location.hostname + (window.location.port && window.location.port !== "443" && window.location.port !== "80" ? (":" + window.location.port) : "") + "/?addr=" + dFO.address);
+        });
+    },
     load(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
         var _this = this;
         _this.setState({dFO: null, deploy: null }, () => {
-            _this.controller.tryLoadDFO(this.address.value.split(' ').join('')).then(function(dFO) {
-                _this.setState({dFO});
-            }).catch(alert);
+            _this.controller.tryLoadDFO(this.address.value.split(' ').join('')).then(_this.onDFO).catch(alert);
         });
     },
     deploy(e) {
