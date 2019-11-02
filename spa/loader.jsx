@@ -11,7 +11,7 @@ var Loader=React.createClass({
         return(
             <div className="MainLoader" style={{"display" : !this.state || !this.state.visible ? "none" : "block"}}>
                 <figure>
-                <iframe src="https://giphy.com/embed/LnFPaepJw6JX2A0Q5Y" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/LnFPaepJw6JX2A0Q5Y">via GIPHY</a></p>
+                <div><iframe src="https://giphy.com/embed/PgKXoMooutndQOOSAB" width="100%" height="100%" frameBorder="0" style={{"position":"absolute"}} class="giphy-embed" allowFullScreen></iframe></div>
                 </figure>
             </div>
         );
