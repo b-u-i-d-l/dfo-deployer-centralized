@@ -2,13 +2,15 @@ var Index = React.createClass({
     load(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
         var _this = this;
-        _this.setState({dFOAddress: null, deploy: null }, () => {
-            _this.setState({dFOAddress:"CIAOQUALCOSA"});
+        _this.setState({dFO: null, deploy: null }, () => {
+            _this.controller.tryLoadDFO(this.address.value.split(' ').join('')).then(function(dFO) {
+                _this.setState({dFO});
+            }).catch(alert);
         });
     },
     deploy(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
-        this.setState({dFOAddress: null, deploy: true });
+        this.setState({dFO: null, deploy: true });
     },
     requiredModules: [
         'spa/deploy',
@@ -17,6 +19,14 @@ var Index = React.createClass({
     requiredScripts: [
         'spa/messages.jsx'
     ],
+    componentDidMount() {
+        var address = '';
+        try {
+            address = window.location.search.split(' ').join('').split('/').join('').split('?addr=').join('');
+        } catch(e) {
+        }
+        isEthereumAddress(address) && (this.address.value = address) && this.load();
+    },
     render() {
         return (
             <div className="Main">
@@ -38,7 +48,7 @@ var Index = React.createClass({
                        <a className="MainDeploy" href="javascript:;" onClick={this.deploy}>or deploy a new <span className="BOLD">Decentralized Flexible Organization</span></a>
                     </div>
                 </article>
-                   {this.state && this.state.dFOAddress && <DFORule dFOAddress={this.state.dFOAddress }/>}
+                   {this.state && this.state.dFO && <DFORule dFO={this.state.dFO}/>}
                    {this.state && this.state.deploy && <Deploy/>}
             </div>
         );

@@ -3,7 +3,6 @@ async function Main() {
         return;
     }
     await loadContext();
-    choosePage();
 }
 
 async function enableMetamask() {
@@ -12,106 +11,66 @@ async function enableMetamask() {
     }
     try {
         await ethereum.enable();
+        ethereum.autoRefreshOnNetworkChange && (ethereum.autoRefreshOnNetworkChange = false);
+        ethereum.on('networkChanged', onMetamaskUpdate);
+        ethereum.on('accountsChanged', onMetamaskUpdate);
         return true;
     } catch (e) {
         return alert('To use this application, you need to enable Metamask access.');
     }
 }
 
+function onMetamaskUpdate() {
+    setTimeout(function() {
+        if(web3.currentProvider.chainId !== '0x1' && web3.currentProvider.chainId !== '0x3') {
+            return alert("Actually we only support Mainnet and Ropsten, please set one of these networks");
+        }
+        $.publish('metamask/update');
+    });
+}
+
+function getEtherscanURL() {
+    return "https://" + (web3.currentProvider.chainId === '0x3' ? 'ropsten.' : '') + "etherscan.io/";
+}
+
+function isEthereumAddress(ad) {
+    if (ad === undefined || ad === null) {
+        return false;
+    }
+    var address = ad.split(' ').join('');
+    if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+        return false;
+    } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+        return true;
+    } else {
+        address = address.replace('0x', '');
+        var addressHash = web3.sha3(address.toLowerCase());
+        for (var i = 0; i < 40; i++) {
+            if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+                //return false;
+            }
+        }
+    }
+    return true;
+}
+
 async function loadContext() {
     var x = await fetch('data/context.json');
     window.context = await x.text();
     window.context = JSON.parse(window.context);
-};
-
-function choosePage() {
-    var page = undefined;
-    try {
-        page = window.location.pathname.split('/').join('').split('.html').join('');
-    } catch (e) {}
-    page = (page || 'index') + 'Main';
-
-    try {
-        var maybePromise = window[page] && window[page]();
-        maybePromise && maybePromise.catch && maybePromise.catch(console.error);
-    } catch (e) {
-        console.error(e);
-    }
 }
 
-async function loadDFO() {
-    var address = document.getElementById('dfo-address').value;
-    window.location.href = "/dfo.html?address=" + encodeURIComponent(address);
-}
-
-async function dfoMain() {
-    var address = undefined;
-    try {
-        address = window.location.search.split('?address=').join('');
-    } catch (e) {}
-    if (!address) {
-        alert('To proceed, you must provide a valid ethereum address');
-        setTimeout(() => window.location.href = '/');
-    }
-}
-
-function indexMain() {
-    //document.getElementById('surveyValidationRulesAddress').value = context.surveyValidationRulesDefaultAddress;
-    //document.getElementById('defaultSurveyValidationRulesAddress').href = 'https://ropsten.etherscan.io/address/' + context.surveyValidationRulesDefaultAddress + '#code';
-}
-
-async function deploy() {
-    messages();
-    var data = getData();
-    var errors = [];
-    !data.dfoName && errors.push('DFO Name is mandatory');
-    !data.tokenSymbol && errors.push('Token Symbol is mandatory');
-    data.tokenDecimals < 1 && errors.push('Token decimals must be a number greater than 1');
-    data.tokenTotalSupply < 1 && errors.push('Token total supply must be a number greater than 1');
-    data.surveyLength < 1 && errors.push('Survey Length must be a number greater than 1');
-    !data.surveyValidationRulesAddress && errors.push('Survey Validation Rules Address is mandatory and must be a valid ethereum address');
-    if (errors.length > 0) {
-        return messages('Some errors occurred:<br/><br/>- ' + errors.join('<br/>- '));
-    }
-    try {
-        messages('Transaction 1 of 3 - Creating MVD Functionality Proposal Factory...');
-        var mvdFunctionalityProposalFactoryAddress = await createContract(context.mvdFunctionalityProposalFactoryAbi, context.mvdFunctionalityProposalFactoryBin);
-        messages('Transaction 2 of 3 - Creating Survey Block Length...');
-        var mvdBlockLengthProviderAddress = await createContract(context.mvdBlockLengthProviderAbi, context.mvdBlockLengthProviderBin, data.surveyLength);
-        messages('Transaction 3 of 3 - Creating Your DFO...');
-        var mvd = await createContract(context.mvdAbi, context.mvdBin,
-            data.dfoName,
-            data.tokenSymbol,
-            data.tokenDecimals,
-            data.tokenTotalSupply,
-            mvdFunctionalityProposalFactoryAddress,
-            mvdBlockLengthProviderAddress,
-            data.surveyValidationRulesAddress
-        );
-        window.location.href = '/dfo.html?address=' + mvd;
-    } catch (e) {
-        console.error(e);
-        return messages('ERROR:<br/><br/>' + e.message || e);
-    }
-}
-
-function getData() {
+function getData(root) {
     var data = {};
-    var inputs = document.getElementsByTagName('input');
-    for (var i in inputs) {
-        var input = inputs[i];
+    root.children().find('input').each(function(i, input) {
         if (input.type !== 'text' && input.type !== 'number') {
-            continue;
+            return;
         }
         data[input.id] = input.value.split(' ').join('');
         input.type === 'number' && (data[input.id] = parseInt(data[input.id]));
         input.type === 'number' && isNaN(data[input.id]) && (data[input.id] = 1);
-    }
+    });
     return data;
-}
-
-function messages(message) {
-    setTimeout(() => document.getElementById('messages').innerHTML = message || '');
 }
 
 function createContract(abi, bin) {
@@ -134,7 +93,7 @@ function createContract(abi, bin) {
             }
             if (typeof contract.address !== 'undefined') {
                 console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                return ok(contract.address);
+                return ok(contract);
             }
         });
         var cnt = web3.eth.contract(abi);
