@@ -1,6 +1,7 @@
 var Run = React.createClass({
     componentDidMount() {
-        this.controller.loadFunctionalities();
+        var _this = this;
+        loadFunctionalities(_this.props.dFO).then(functionalities => _this.setState({functionalities})).catch(e => _this.emit('message', e.message || e, 'error'));
     },
     onClick(e, it) {
         

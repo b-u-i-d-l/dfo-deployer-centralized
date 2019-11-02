@@ -4,7 +4,6 @@ var DeployController = function (view) {
 
     context.deploy = async function deploy(data) {
         context.view.emit('message');
-        context.view.emit('loader/toggle');
         var errors = [];
         !data.dfoName && errors.push('Insert a valid DFO Name');
         !data.tokenSymbol && errors.push('Insert a valid Token Symbol');
@@ -15,8 +14,8 @@ var DeployController = function (view) {
         if (errors.length > 0) {
             throw errors;
         }
+        context.view.emit('loader/toggle');
         context.view.emit('message', 'Transaction 1 of 3 - Creating MVD Functionality Proposal Factory...', 'info');
-        context.view.emit("loader/toggle");
         var mvdFunctionalityProposalFactory = await createContract(window.context.mvdFunctionalityProposalFactoryAbi, window.context.mvdFunctionalityProposalFactoryBin);
         context.view.emit('message', 'Transaction 2 of 3 - Creating Survey Block Length...', 'info');
         var mvdBlockLengthProvider = await createContract(window.context.mvdBlockLengthProviderAbi, window.context.mvdBlockLengthProviderBin, data.surveyLength);

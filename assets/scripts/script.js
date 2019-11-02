@@ -62,13 +62,12 @@ async function loadContext() {
 
 function getData(root) {
     var data = {};
-    root.children().find('input').each(function(i, input) {
-        if (input.type !== 'text' && input.type !== 'number') {
-            return;
-        }
-        data[input.id] = input.value.split(' ').join('');
+    root.children().find('input,select').each(function(i, input) {
+        input.type && input.type !== 'checkbox' && (data[input.id] = input.value.split(' ').join(''));
         input.type === 'number' && (data[input.id] = parseInt(data[input.id]));
         input.type === 'number' && isNaN(data[input.id]) && (data[input.id] = 1);
+        input.type === 'checkbox' && (data[input.id] = input.checked);
+        !input.type && (data[input.id] = $(input).val());
     });
     return data;
 }
@@ -100,3 +99,23 @@ function createContract(abi, bin) {
         cnt.new.apply(cnt, args);
     });
 }
+
+async function loadFunctionalities(dFO) {
+    var functionalitiesAmount = await new Promise(function(ok, ko) {
+        dFO.getFunctionalitiesAmount(function(e, data) {
+            if(e) {
+                return ko(e.message || e);
+            }
+            return ok(data.toNumber());
+        });
+    });
+    var functionalities = await new Promise(function(ok, ko) {
+        dFO.functionalitiesToJSON(function(e, data) {
+            if(e) {
+                return ko(e.message || e);
+            }
+            return ok(data);
+        });
+    });
+    return JSON.parse(functionalities);
+};

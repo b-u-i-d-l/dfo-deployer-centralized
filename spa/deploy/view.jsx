@@ -58,7 +58,7 @@ var Deploy = React.createClass({
                             <h3><span className="BOLD">How to start a DFO:</span></h3>
                             <p><span className="BOLD">STEP 1:</span> Define the voting rules and the voting token and deploy it to generate the DFO proxy Contract</p>
                             <p><span className="BOLD">STEP 2:</span> Set your first function, deploying a Smart Contract and go to the section "Survey". Fill the label to create a survey and request the connection to the proxy to Token Holders.</p>
-                            <p><span className="BOLD">STEP 3:</span> Vote for the Survey using your Voting Tokens in the section "Governance"</p>
+                            <p><span className="BOLD">STEP 3:</span> Vote htmlFor the Survey using your Voting Tokens in the section "Governance"</p>
                         </section>
                     </div>
                 </div>
