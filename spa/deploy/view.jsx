@@ -4,7 +4,7 @@ var Deploy = React.createClass({
             <section className="Nav">
                 <div className="NavAll">
                     <div className="NavDeploy">
-                        <h2><span className="BOLD">Hello World </span> | Deploy your DFO</h2>
+                        <h2><span className="BOLD">Hello World </span> | New DFO</h2>
                         <div className="special">
                             <h4 className="BOLD">DFO</h4>
                             <label for="dfoName">Name:</label>
@@ -28,7 +28,7 @@ var Deploy = React.createClass({
                             <label for="surveyLength">Survey Duration (Blocks):</label>
                             <input id="surveyLength" type="number" min="0" />
                         </div>
-                        <div className="special">
+                        <div>
                             <label for="surveyValidationRulesAddress">Rules Smart Contract Address:</label>
                             <input id="surveyValidationRulesAddress" type="text" placeholder="Enter ethereum address.." />
                             <br />

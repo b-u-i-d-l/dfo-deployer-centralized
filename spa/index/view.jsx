@@ -25,6 +25,12 @@ var Index = React.createClass({
                     <figure>
                         <div className="GIFY"><iframe src="https://giphy.com/embed/cPHYguVPkcXBIM5tpX" width="100%" height="100%" style={{"position":"absolute"}} frameBorder="0" className="giphy-embed" allowFullScreen></iframe></div>
                     </figure>
+                    <h4>Deploy and Manage a Flexible Organization, without points of failure</h4>
+                    <div className="MainBtn">
+                        <a target="_blank" href="https://medium.com/risepic/introducing-the-decentralized-flexible-organization-8c9e6fbab6d4">Manifesto</a>
+                        <a target="_blank" href="https://github.com/b-u-i-d-l">GitHub</a>
+                        <a target="_blank" href="https://gitcoin.co/grants/154/decentralized-flexible-organization">GitCoin</a>
+                    </div>
                     <div className="MainLoad">
                        <input ref={ref => this.address = ref } placeholder="Enter your ethereum address here..." /> 
                        <button type="button" onClick={this.load}>Load</button>

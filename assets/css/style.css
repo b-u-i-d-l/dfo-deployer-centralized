@@ -1,10 +1,14 @@
-body { background-color:  #000000; width: 100%; height: 100%; position: relative;line-height:1; overflow: scroll; position: relative;min-height: 100%; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
+body { background-color:  #000000; width: 100%; position: relative;line-height:1; overflow: scroll; position: relative; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main {width: 100%; background-color: transparent; text-align: center; position: relative;}
 .Main .MainAwesome {width: 100%; position: relative;}
 .Main .MainAwesome figure {text-align: left;}
 .Main .MainAwesome .GIFY {width:50%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
-.Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 90px auto;}
+.Main .MainAwesome h4 {font-size: 16px; text-align: center; color: #ffffff; display: inline-block; width: 100%; margin: 50px 0 0 0;}
+.Main .MainAwesome .MainBtn {width: 100%; display: inline-block; margin: 60px 0 10px 0; text-align: center; clear: both;}
+.Main .MainAwesome .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 30px; text-decoration: none; background-color: #cccccc; color: #000000; font-size: 13px;}
+.Main .MainAwesome .MainBtn a:hover {background-color: #ffffff; font-weight: bold;}
+.Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 50px auto 90px auto;}
 .Main .MainLoad input {width: 89%; background-color: #0a0a0a; border: none; height: 90px; font-size: 35px; outline: none; color: #ffffff;}
 .Main .MainLoad input:hover, .Main .MainLoad input:focus, .Main .MainLoad input:active {background-color: #151515; border-bottom: 2px solid #ffff00; height: 90px;} 
 .Main .MainLoad button {width: 10%; background-color: #ffff00; border: none; height: 90px; vertical-align: top; font-size: 15px;}
@@ -12,17 +16,29 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainDeploy {display: inline-block; float: left; margin: 20px 0; font-size: 18px; color: #ffffff; text-decoration: none;}
 .Main .MainDeploy span {color: #00ff00; border-bottom: 1px solid #00ff00; font-size: 20px;}
 .Main .MainDeploy span:hover {color: #000000; border: none; background-color: #00ff00;}
-.Main .MainMsg {width: 100%; background-color: #ff0000; position: fixed; min-height: 40px; padding: 15px 0; top: 0; left: 0; z-index: 9999999;}
+.Main .MainMsg {width: 100%; background-color: #ff0000; position: fixed; min-height: 40px; padding: 15px 0; top: 0; left: 0; z-index: 9999999; display: none;}
 
 .Nav {width: 100%; background-color: #f1f1f1; text-align: center;  display: inline-block; padding: 30px 0;}
 .NavAll {width: 100%; text-align: center;  display: inline-block;}
-.NavAll .NavDeploy {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
-.NavAll .NavDeploy > div {width: 70%; text-align: left; display: inline-block; padding: 15px 0;}
-.NavAll .NavDeploy .special {border-bottom: 1px solid #000000;}
-.NavAll .NavDeploy h4 {font-size: 18px;}
-.NavAll .NavDeploy > div > label {width: 60%; display: inline-block; font-size: 15px;}
-.NavAll .NavDeploy > div > input {width: 30%; display: inline-block;height: 25px;}
-.NavAll .crea button {width: 100%;height: 30px;background-color: #000000;color: #ffffff;}
+.NavAll .NavChooser {text-decoration: none; text-align: center; display: inline-block; width: 720px;}
+.NavAll .NavChooser li {display: inline-block; width: 30%; padding: 10px 0 15px 0; border-bottom: 1px solid #cccccc; text-align: center;}
+.NavAll .NavChooser li:hover {border-bottom: 1px solid #000000;}
+.NavAll .NavChooser li a {font-size: 18px; color: #545454; text-decoration: none;}
+.NavAll .NavChooser li:hover a {color: #000000; font-weight: bold;}
+.NavAll .NavChooser .selected, .NavAll .NavChooser .selected:hover {background-color: #000000; border-bottom:1px solid #000000;}
+.NavAll .NavChooser .selected a, .NavAll .NavChooser .selected:hover a {font-weight: bold; color: #ffffff;}
+.NavAll .NavDeploy, .NavAll .NavPropose {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
+.NavAll .NavDeploy > div, .NavAll .NavPropose > div {width: 70%; text-align: left; display: inline-block; padding: 15px 0;}
+.NavAll .NavDeploy .special, .NavAll .NavPropose .special {border-bottom: 1px solid #cccccc;}
+.NavAll .NavDeploy h4, .NavAll .NavPropose h4 {font-size: 18px;}
+.NavAll .NavDeploy > div > label, .NavAll .NavPropose  > div > label {width: 60%; display: inline-block; font-size: 15px;}
+.NavAll .NavDeploy > div > input, .NavAll .NavPropose  > div > input {width: 30%; display: inline-block;height: 25px;}
+.NavAll .NavDeploy  button {width: 100%;height: 40px;background-color: #00ff00;color: #000000; font-size: 14px; border: none;}
+.NavAll .NavDeploy  button:hover {font-weight: bold;}
+.NavAll .NavPropose  button {width: 100%;height: 40px;background-color: #ffff00;color: #000000; font-size: 14px; border: none;}
+.NavAll .NavPropose  button:hover {font-weight: bold;}
+.NavAll .NavPropose input[type="checkbox"] {text-align: center;}
+.NavAll .NavPropose select {width: 30%; height: 25px; background-color: #000000; color: #ffffff; border-radius: 0;}
 .NavDeploy .MainHow {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
 .NavDeploy .MainHow p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
 .NavDeploy .MainHow h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}

@@ -1,57 +1,60 @@
 var Propose = React.createClass({
     render() {
         return (
-            <div className="chooser">
-                    <h2><span className="BOLD">Hello World </span> | Deploy your DFO</h2>
-                    <div className="create">
+            <section className="Nav">
+                <div className="NavAll">
+                    <div className="NavPropose">
+                        <h2><span className="BOLD">Propose</span> Update</h2>
                     <div>
-                <h2><span className="BOLD">Propose your functionality</span></h2>
-                <div className="special">
-                    <label for="functionalityName">Name:</label>
-                    <input id="functionalityName" type="text" />
-                </div>
-                <div className="special">
-                    <label for="functionalityAddress">Address of the SmartContract containing the functionality:</label>
-                    <input id="functionalityAddress" type="text" />
-                </div>
-                <div className="special">
-                    <label for="functionalitySubmitable">Will be a submitable functionality?</label>
-                    <input id="functionalitySubmitable" type="checkbox" />
-                </div>
-                <div className="special">
-                    <label for="functionalityMethodSignature">Method signature of the functionality to call:</label>
-                    <input id="functionalityMethodSignature" type="text" />
-                </div>
-                <div className="special">
-                    <label for="functionalityOutputParameters">Insert output values of the functionality (separated by space):</label>
-                    <input id="functionalityOutputParameters" type="text" />
-                </div>
-                <div className="special">
-                    <label for="functionalityInternal">Will be an internal functionality (callable from other valid functionalities only)?</label>
-                    <input id="functionalityInternal" type="checkbox" />
-                </div>
-                <div className="special">
-                    <label for="functionalityNeedsSender">Will this functionality need the sender of the transaction?</label>
-                    <input id="functionalityNeedsSender" type="checkbox" />
-                </div>
-                <div className="special">
-                    <label for="functionalityReplace">Select the functionality that will be replaced, if any:</label>
-                    <select id="functionalityReplace">
-                        <option selected="true">NONE</option>
-                        <option>Goku</option>
-                        <option>Scooby Doo</option>
-                        <option>Mia Nonna</option>
-                        <option>Toschino</option>
-                        <option>Carote</option>
-                        <option>Vitalik Buterin</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="button">Propose</button>
-                </div>
-            </div>
-                </div>
-                </div>
+                        <h4 className="BOLD">Bio</h4>
+                        <label for="functionalityName">Name:</label>
+                        <input id="functionalityName" type="text" />
+                    </div>
+                    <div className="special">
+                        <label for="functionalityAddress">SmartContract Address:</label>
+                        <input id="functionalityAddress" type="text" />
+                    </div>
+                    <div>
+                        <h4 className="BOLD">Id</h4>
+                        <label for="functionalitySubmitable">Is submitable?</label>
+                        <input id="functionalitySubmitable" type="checkbox" />
+                    </div>
+                    <div>
+                        <label for="functionalityInternal">Is internal? (callable from other functions)</label>
+                        <input id="functionalityInternal" type="checkbox" />
+                    </div>
+                    <div className="special">
+                        <label for="functionalityNeedsSender">need a sender?</label>
+                        <input id="functionalityNeedsSender" type="checkbox" />
+                    </div>
+                    <div>
+                        <h4 className="BOLD">Advanced</h4>
+                        <label for="functionalityMethodSignature">Method Signature to call:</label>
+                        <input id="functionalityMethodSignature" type="text" />
+                    </div>
+                    <div className="special">
+                        <label for="functionalityOutputParameters">Output Values (separated by space):</label>
+                        <input id="functionalityOutputParameters" type="text" />
+                    </div>
+                    <div>
+                        <h4 className="BOLD">Edit Functionality</h4>
+                        <label for="functionalityReplace">Update an Existing Function?:</label>
+                        <select id="functionalityReplace">
+                            <option selected="true">NONE</option>
+                            <option>Goku</option>
+                            <option>Scooby Doo</option>
+                            <option>Mia Nonna</option>
+                            <option>Toschino</option>
+                            <option>Carote</option>
+                            <option>Vitalik Buterin</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button">Propose</button>
+                    </div>
+                    </div>
+                    </div>
+            </section>
         );
     }
 });
