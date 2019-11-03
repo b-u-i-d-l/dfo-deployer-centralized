@@ -48,9 +48,6 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavPropose  button:hover {font-weight: bold;}
 .NavAll .NavPropose input[type="checkbox"] {text-align: center;}
 .NavAll .NavPropose select {width: 30%; height: 25px; background-color: #000000; color: #ffffff; border-radius: 0;}
-.NavDeploy .MainHow {text-align: left; width: 990px; margin: 0 auto; margin-top: 50px;}
-.NavDeploy .MainHow p {font-size: 15px; color: #ffffff; clear: both; margin: 10px 0; display: inline-block; line-height: 1.3}
-.NavDeploy .MainHow h3 {font-size: 35px; color: #ffffff; line-height: 1.3; text-align: center;}
 .NavAll .NavRunRw {width: 720px; text-align: center; padding: 10px 20px; margin: 0 auto;}
 .NavAll .NavRunRw li {text-decoration: none; display: inline-block; width: 100%; padding: 25px 0; text-align: right; border-bottom: 1px solid #cccccc;}
 .NavAll .NavRunRw .RwCn {width: 100%; display: inline-block; font-size: 20px; font-weight: bold; text-align: left; padding: 15px 0;}
