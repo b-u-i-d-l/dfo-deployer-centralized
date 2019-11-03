@@ -23,5 +23,7 @@ function Boot() {
 }
 
 $(document).ready(function() {
-    Main().then(Boot).catch(console.error);
+    Main().then(Boot).catch(function(e) {
+        return alert(e.message || e);
+    });
 });
