@@ -37,13 +37,13 @@ var Govern = React.createClass({
                                 <div className="NavGovernVote">
                                     <h3 htmlFor="amount">Vote</h3>
                                     <input type="number" ref={ref => this.amount = ref} id="amount" min="0" placeholder="Token Amount"/>
-                                    <button onClick={this.accept}>Accept</button>
-                                    <button onClick={this.refuse}>Refuse</button>
+                                    <button className="VoteYep" onClick={this.accept}>Accept</button>
+                                    <button className="VoteNope" onClick={this.refuse}>Refuse</button>
                                     <h3 htmlFor="amount">Status</h3>
-                                    <p>Accepted: <span className="BOLD">99</span></p>
-                                    <p>Refused: <span className="BOLD">200</span></p>
+                                    <p>All Accepted: <span className="BOLD">99</span></p>
+                                    <p>All Refused: <span className="BOLD">200</span></p>
                                     <p>End Block: <span className="BOLD">972356725723</span></p>
-                                    <p>Token Invested: <span className="BOLD">70</span></p>
+                                    <p>Token Locked: <span className="BOLD">70</span></p>
                                     <button className="VoteCancel" onClick={this.refuse}>Withdraw</button>
                                 </div>
                             </li>)}

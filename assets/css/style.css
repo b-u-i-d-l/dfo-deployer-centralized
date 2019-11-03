@@ -66,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavGovern .NavGovernVote {width: 30%; text-align: left;display: inline-block; vertical-align: top;}
 .NavAll .NavGovern .NavGovernVote h3 {font-weight: bold; margin-block-start: 0;margin-block-end: 0; margin: 10px 0;font-size: 18px; display: inline-block; width: 100%;}
 .NavAll .NavGovern .NavGovernVote p {margin-block-start: 0;margin-block-end: 0; margin: 2px 0;font-size: 13px; display: inline-block; width: 100%;}
+.NavAll .NavGovern .NavGovernVote input {width: 40%;}
 .BOLD {font-weight: bold !important;}
 
 @media screen and (max-width: 1650px) {
