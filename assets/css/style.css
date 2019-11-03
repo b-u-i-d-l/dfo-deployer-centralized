@@ -22,6 +22,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainDeploy span {color: #00ff00; border-bottom: 1px solid #00ff00; font-size: 20px;}
 .Main .MainDeploy span:hover {color: #000000; border: none; background-color: #00ff00;}
 .Main .MainMsg {width: 100%; background-color: #00ffff; position: fixed; min-height: 30px; padding: 5px 0; bottom: 0; left: 0; z-index: 9999999; }
+.Main .MainMsg button {position: absolute;top: 0;right: 0;background-color: transparent;border: none;text-decoration: underline;font-size: 12px;color: #2f2f2f;}
 .Main .MainMsg_warning {background-color: #ff00ff;}
 .Main .MainMsg_error {background-color: #ff0000;}
 .Main .MainMsg_success {background-color: #00ff00;}
@@ -59,15 +60,6 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavRunRw .RwSm, .NavAll .NavRunRw .RwPa {color: #000000; font-size: 13px; padding: 5px;}
 .NavAll .NavRunRw .RwSm:hover, .NavAll .NavRunRw .RwPa:hover {background-color: #ff00ff; text-decoration: none;}
 .BOLD {font-weight: bold !important;}
-.NOEFFECT {-webkit-transition-duration: 0.0s !important; transition-duration: 0.0s !important;}
-.BLUR {-webkit-transition: -webkit-filter 100ms ease-in-out;-moz-transition: -moz-filter 100ms ease-in-out;-o-transition: -o-filter 100ms ease-in-out;-ms-transition: -ms-filter 100ms ease-in-out;transition: filter 100ms ease-in-out; -webkit-filter:blur(4px);-moz-filter: blur(4px);-o-filter: blur(4px);-ms-filter: blur(4px);filter: blur(4px);}
-.BLURHOVER:hover {-webkit-transition: -webkit-filter 100ms ease-in-out;-moz-transition: -moz-filter 100ms ease-in-out;-o-transition: -o-filter 100ms ease-in-out;-ms-transition: -ms-filter 100ms ease-in-out;transition: filter 100ms ease-in-out; -webkit-filter:blur(4px);-moz-filter: blur(4px);-o-filter: blur(4px);-ms-filter: blur(4px);filter: blur(4px);}
-.NOBLUR {-webkit-filter:blur(0px) !important;-moz-filter: blur(0px) !important;-o-filter: blur(0px) !important;-ms-filter: blur(0px) !important;filter: blur(0px) !important;}
-.OPA02 {opacity: 0.2 !important;}
-.OPA08 {opacity: 0.8 !important;}
-.OPA1 {opacity: 1 !important;}
-.HIDEO {opacity: 0 !important; display: none !important; z-index: -10000!important; text-indent: -99999999px!important;}
-.icon_circle {-webkit-border-radius: 50% !important;-webkit-border-radius: 9999999px; -moz-border-radius: 50% !important; -moz-border-radius: 9999999px; border-radius: 50% !important; border-radius: 9999999px; border-top-right-radius: 50% !important;border-top-left-radius: 50% !important;border-bottom-right-radius: 50% !important;border-bottom-left-radius: 50% !important;border-top-right-radius: 9999999px;border-top-left-radius: 9999999px;border-bottom-right-radius: 9999999px;border-bottom-left-radius: 9999999px;}
 
 @media screen and (max-width: 1650px) {
   .Main .MainLoader figure > div {width: 450px;height: 450px;}
