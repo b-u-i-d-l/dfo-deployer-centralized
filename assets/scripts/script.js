@@ -1,6 +1,6 @@
 async function Main() {
-    alert("Ethereum: " + (typeof window.ethereum));
-    alert("Web3: " + (typeof window.web3));
+    alert("Ethereum: " + (typeof window.ethereum === 'undefined'));
+    alert("Web3: " + (typeof window.web3 === 'undefined'));
     if (!await enableMetamask()) {
         return;
     }
