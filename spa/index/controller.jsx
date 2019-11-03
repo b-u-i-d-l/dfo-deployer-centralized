@@ -7,7 +7,7 @@ var IndexController = function(view) {
             if(!isEthereumAddress(dFOAddress)) {
                return ko("Insert a valid DFO Address");
             }
-            var dFO = web3.eth.contract(window.context.mvdAbi).at(dFOAddress);
+            var dFO = window.web3.eth.contract(window.context.mvdAbi).at(dFOAddress);
             dFO.getFunctionalitiesAmount(function(e, data) {
                 if(e) {
                     return ko(e.message || e);

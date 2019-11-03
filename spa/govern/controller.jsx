@@ -27,7 +27,7 @@ var GovernController = function(view) {
     };
 
     context.getSurveyData = async function getSurveyData(address) {
-        var contract = web3.eth.contract(window.context.propsalAbi).at(address);
+        var contract = window.web3.eth.contract(window.context.propsalAbi).at(address);
 
         return new Promise(function(ok, ko) {
             

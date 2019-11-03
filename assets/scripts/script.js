@@ -8,14 +8,14 @@ async function Main() {
 }
 
 async function enableMetamask() {
-    if (typeof ethereum === 'undefined') {
+    if (typeof window.ethereum === 'undefined') {
         throw 'To use this application, you need Metamask Extension installed.';
     }
     try {
-        await ethereum.enable();
-        ethereum.autoRefreshOnNetworkChange && (ethereum.autoRefreshOnNetworkChange = false);
-        ethereum.on('networkChanged', onMetamaskUpdate);
-        ethereum.on('accountsChanged', onMetamaskUpdate);
+        await window.ethereum.enable();
+        window.ethereum.autoRefreshOnNetworkChange && (window.ethereum.autoRefreshOnNetworkChange = false);
+        window.ethereum.on && window.ethereum.on('networkChanged', onMetamaskUpdate);
+        window.ethereum.on && window.ethereum.on('accountsChanged', onMetamaskUpdate);
         return true;
     } catch (e) {
         throw 'To use this application, you need to enable Metamask.';
@@ -24,7 +24,7 @@ async function enableMetamask() {
 
 function onMetamaskUpdate() {
     setTimeout(function() {
-        if(web3.currentProvider.chainId !== '0x1' && web3.currentProvider.chainId !== '0x3') {
+        if(window.web3.currentProvider.chainId !== '0x1' && window.web3.currentProvider.chainId !== '0x3') {
             return alert("Actually we only support Mainnet and Ropsten.");
         }
         $.publish('metamask/update');
@@ -32,7 +32,7 @@ function onMetamaskUpdate() {
 }
 
 function getEtherscanURL() {
-    return "https://" + (web3.currentProvider.chainId === '0x3' ? 'ropsten.' : '') + "etherscan.io/";
+    return "https://" + (window.web3.currentProvider.chainId === '0x3' ? 'ropsten.' : '') + "etherscan.io/";
 }
 
 function isEthereumAddress(ad) {
@@ -46,7 +46,7 @@ function isEthereumAddress(ad) {
         return true;
     } else {
         address = address.replace('0x', '');
-        var addressHash = web3.sha3(address.toLowerCase());
+        var addressHash = window.web3.sha3(address.toLowerCase());
         for (var i = 0; i < 40; i++) {
             if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
                 //return false;
@@ -82,7 +82,7 @@ function createContract(abi, bin) {
         }
     }
     args.push({
-        from: web3.eth.accounts[0],
+        from: window.web3.eth.accounts[0],
         data: bin,
         gas: '8000000'
     });
@@ -97,7 +97,7 @@ function createContract(abi, bin) {
                 return ok(contract);
             }
         });
-        var cnt = web3.eth.contract(abi);
+        var cnt = window.web3.eth.contract(abi);
         cnt.new.apply(cnt, args);
     });
 }
