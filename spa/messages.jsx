@@ -7,7 +7,7 @@ var Messages=React.createClass({
     onMessage(message, className) {
         var _this = this;
         this.setState({message, className}, function() {
-            !_this.state.message || _this.state.message.length === 0 || _this.state.className === 'error' && _this.emit('loader/toggle', false);
+            (!_this.state.message || _this.state.message.length === 0 || _this.state.className === 'error') && _this.emit('loader/toggle', false);
         });
     },
     clear(e) {
