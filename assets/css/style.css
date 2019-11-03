@@ -69,6 +69,22 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .HIDEO {opacity: 0 !important; display: none !important; z-index: -10000!important; text-indent: -99999999px!important;}
 .icon_circle {-webkit-border-radius: 50% !important;-webkit-border-radius: 9999999px; -moz-border-radius: 50% !important; -moz-border-radius: 9999999px; border-radius: 50% !important; border-radius: 9999999px; border-top-right-radius: 50% !important;border-top-left-radius: 50% !important;border-bottom-right-radius: 50% !important;border-bottom-left-radius: 50% !important;border-top-right-radius: 9999999px;border-top-left-radius: 9999999px;border-bottom-right-radius: 9999999px;border-bottom-left-radius: 9999999px;}
 
+@media screen and (max-width: 1650px) {
+  .Main .MainLoader figure > div {width: 450px;height: 450px;}
+  .Main .MainLoader figure > div iframe {width: 450px;height: 450px;}
+  }
+@media screen and (max-width: 1500px) {
+  .Main .MainLoader figure > div {width: 400px;height: 400px;}
+  .Main .MainLoader figure > div iframe {width: 400px;height: 400px;}
+  }
+@media screen and (max-width: 1400px) {
+  .Main .MainLoader figure > div {width: 350px;height: 350px;}
+  .Main .MainLoader figure > div iframe {width: 350px;height: 350px;}
+  }
+@media screen and (max-width: 1200px) {
+  .Main .MainLoader figure > div {width: 300px;height: 300px;}
+  .Main .MainLoader figure > div iframe {width: 300px;height: 300px;}
+  }
 @media screen and (max-width: 900px) {
 .MainAwesome .GIFY {width:100% !important; padding-bottom: 30% !important;}
 .Main .MainLoad {width: 88%; margin: 15px auto 25px auto;}
