@@ -56,6 +56,16 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavRunRw .RwWrite:hover, .NavAll .NavRunRw .RwRead:hover {background-color: #ffff00; color: #000000;}
 .NavAll .NavRunRw .RwSm, .NavAll .NavRunRw .RwPa {color: #000000; font-size: 13px; padding: 5px;}
 .NavAll .NavRunRw .RwSm:hover, .NavAll .NavRunRw .RwPa:hover {background-color: #ff00ff; text-decoration: none;}
+.NavAll .NavGovern ul {text-decoration: none; text-align: center; display: inline-block; width: 800px;}
+.NavAll .NavGovern li {width: 100%; text-decoration: none; display: inline-block; border-bottom: 1px solid #cccccc; padding: 20px 0;}
+.NavAll .NavGovern .NavGovernTitle {width: 30%; text-align: left; display: inline-block; vertical-align: top;}
+.NavAll .NavGovern .NavGovernTitle p {font-size: 25px; display: inline-block; width: 100%;margin-block-start: 0;margin-block-end: 0; margin-bottom: 5px;}
+.NavAll .NavGovern .NavGovernTitle a {font-size: 12px; display: inline-block; margin-bottom: 5px;}
+.NavAll .NavGovern .NavGovernNerd {width:35%; text-align: left; margin: 0 1%;display: inline-block; vertical-align: top;}
+.NavAll .NavGovern .NavGovernNerd p {margin-block-start: 0;margin-block-end: 0; margin-bottom: 5px;font-size: 14px; display: inline-block; width: 100%;}
+.NavAll .NavGovern .NavGovernVote {width: 30%; text-align: left;display: inline-block; vertical-align: top;}
+.NavAll .NavGovern .NavGovernVote h3 {font-weight: bold; margin-block-start: 0;margin-block-end: 0; margin: 10px 0;font-size: 18px; display: inline-block; width: 100%;}
+.NavAll .NavGovern .NavGovernVote p {margin-block-start: 0;margin-block-end: 0; margin: 2px 0;font-size: 13px; display: inline-block; width: 100%;}
 .BOLD {font-weight: bold !important;}
 
 @media screen and (max-width: 1650px) {
@@ -88,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavChooser {margin-block-end: 0;margin-block-start: 0;padding-inline-start: 0;width: 98%;}
 .NavAll .NavChooser li {width: 32%; padding:  9px 0 10px 0;}
 .NavAll .NavChooser li a {font-size: 12px; font-weight: bold;}
-.NavAll .NavDeploy, .NavAll .NavPropose { width: 92%; padding: 10px 0;}
+.NavAll .NavDeploy, .NavAll .NavPropose, .NavAll .NavGovern { width: 92%; padding: 10px 0;}
 .NavAll .NavDeploy > div, .NavAll .NavPropose > div { width: 90%; text-align: center;}
 .NavAll .NavDeploy > div > label, .NavAll .NavPropose > div > label {width: 90%; margin-bottom: 10px;}
 .NavAll .NavDeploy > div > input, .NavAll .NavPropose > div > input {width: 90%;}

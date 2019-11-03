@@ -42,7 +42,7 @@ var Deploy = React.createClass({
                         <div>
                             <h4 className="BOLD">Governance Rules</h4>
                             <label htmlFor="surveyLength">Survey Duration (Blocks):</label>
-                            <input id="surveyLength" type="number" min="0" />
+                            <input id="surveyLength" type="number" min="1" />
                         </div>
                         <div className="special">
                             <label htmlFor="surveyValidationRulesAddress">Rules Smart Contract Address:</label>

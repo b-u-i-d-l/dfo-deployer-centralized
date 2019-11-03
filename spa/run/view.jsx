@@ -9,7 +9,7 @@ var Run = React.createClass({
     render() {
         var _this = this;
         return (
-            <div className="chooser">
+            <div className="NavAll">
                     <h2><span className="BOLD">The DFO </span> | Explore</h2>
                     <ul className="NavRunRw">
                     {this.state && this.state.functionalities && this.state.functionalities.map(it =><li key={it.codeName}>
