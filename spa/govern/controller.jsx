@@ -3,7 +3,7 @@ var GovernController = function(view) {
     context.view = view;
 
     context.loadSurveys = async function loadSurveys() {
-        return JSON.parse(await (await fetch('data/mockFunctionalities.json')).text());
+        return window.context.mockFunctionalities;
         var allSurveys = await new Promise(function(ok, ko) {
             context.view.props.dFO.Proposal({}, {fromBlock: 0}).get(function(e, data) {
                 if(e) {
