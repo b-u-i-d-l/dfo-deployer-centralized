@@ -1,4 +1,6 @@
 async function Main() {
+    alert("Ethereum: " + (typeof window.ethereum));
+    alert("Web3: " + (typeof window.web3));
     if (!await enableMetamask()) {
         return;
     }
@@ -7,7 +9,7 @@ async function Main() {
 
 async function enableMetamask() {
     if (typeof ethereum === 'undefined') {
-        return alert('To use this application, you need Metamask Extension installed.');
+        throw 'To use this application, you need Metamask Extension installed.';
     }
     try {
         await ethereum.enable();
@@ -16,7 +18,7 @@ async function enableMetamask() {
         ethereum.on('accountsChanged', onMetamaskUpdate);
         return true;
     } catch (e) {
-        return alert('To use this application, you need to enable Metamask.');
+        throw 'To use this application, you need to enable Metamask.';
     }
 }
 
