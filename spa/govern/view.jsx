@@ -1,13 +1,51 @@
 var Govern = React.createClass({
     componentDidMount() {
         var _this = this;
-        this.controller.loadSurveys().then(surveys => _this.setState({ surveys })).catch(e => _this.emit('message', e.message || e, "error"));
+        this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
     },
     accept(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
     },
     refuse(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
+    },
+    renderSurvey(survey) {
+        return (<li key={survey.codeName}>
+            <div className="NavGovernTitle">
+                {survey.codeName && <p><span className="BOLD">{survey.codeName || "NONE"}</span></p>}
+                {survey.location && <a href={getEtherscanURL() + "address/" + survey.location} target="_blank">{"Smart Contract"}</a>}
+                {survey.replaces && <div>
+                    <label>Replace:</label>
+                    <span>{survey.replaces}</span>
+                </div>}
+            </div>
+            {(survey.methodSignature !== '' || (survey.returnAbiParametersArray && survey.returnAbiParametersArray.length > 0)) && <div className="NavGovernNerd">
+                {survey.methodSignature && [
+                    <p>submitable: <span className="BOLD">{survey.submitable ? "YES" : "NO"}</span></p>,
+                    <p>internal: <span className="BOLD">{survey.isInternal ? "YES" : "NO"}</span></p>,
+                    <p>sender: <span className="BOLD">{survey.needsSender ? "YES" : "NO"}</span></p>,
+                    <p>Method Signature: <span className="BOLD">{survey.methodSignature}</span></p>
+                ]}
+                {survey.returnAbiParametersArray && survey.returnAbiParametersArray.length > 0 && [
+                    <p>Output Values:</p> ,
+                    <span>{JSON.stringify(survey.returnAbiParametersArray)}</span>
+                ]}
+            </div>}
+            <div className="NavGovernVote">
+                {survey.endBlock >= this.state.currentBlock && [
+                    <h3 htmlFor="amount">Vote</h3>,
+                    <input type="number" ref={ref => this.amount = ref} id="amount" min="0" placeholder="Token Amount"/>,
+                    <button className="VoteYep" onClick={this.accept}>Accept</button>,
+                    <button className="VoteNope" onClick={this.refuse}>Refuse</button>
+                ]}
+                <h3 htmlFor="amount">Status</h3>
+                <p>Start Block: <span className="BOLD">{survey.startBlock}</span></p>
+                <p>End Block: <span className="BOLD">{survey.endBlock}</span></p>
+                <p>Accepted: <span className="BOLD">{survey.accepted}</span></p>
+                <p>Refused: <span className="BOLD">{survey.refused}</span></p>
+                <p>Tokens Locked: <span className="BOLD">{survey.accepted + survey.refused}</span></p>
+            </div>
+        </li>);
     },
     render() {
         return (
@@ -17,66 +55,11 @@ var Govern = React.createClass({
                         <h2><span className="BOLD"></span> Coming Soon</h2>
                         <h2><span className="BOLD">Proposal </span> | In Progress</h2>
                         <ul>
-                            {this.state && this.state.surveys && this.state.surveys.map(it => <li key={it.codeName}>
-                                {it.codeName && [<div className="NavGovernTitle">
-                                    <p><span className="BOLD">{it.codeName || "NONE"}</span></p>
-                                    <a href="">{it.proposalAddress || "Smart Contract"}</a>
-                                    {it.replaced && <div>
-                                        <label>Repplace:</label>
-                                        <span>{it.replaced}</span>
-                                    </div>}
-                                </div>,
-                                <div className="NavGovernNerd">
-                                    <p>submitable: <span className="BOLD">{it.submitable}</span></p>
-                                    <p>internal: <span className="BOLD">{it.isInternal}</span></p>
-                                    <p>sender: <span className="BOLD">{it.needsSender}</span></p>
-                                    <p>Method Signature: <span className="BOLD">{it.methodSignature}</span></p>
-                                    <p>Output Values:</p>
-                                    <span>{JSON.stringify(it.returnAbiParametersArray)}</span>
-                                </div>]}
-                                <div className="NavGovernVote">
-                                    <h3 htmlFor="amount">Vote</h3>
-                                    <input type="number" ref={ref => this.amount = ref} id="amount" min="0" placeholder="Token Amount"/>
-                                    <button className="VoteYep" onClick={this.accept}>Accept</button>
-                                    <button className="VoteNope" onClick={this.refuse}>Refuse</button>
-                                    <h3 htmlFor="amount">Status</h3>
-                                    <p>All Accepted: <span className="BOLD">99</span></p>
-                                    <p>All Refused: <span className="BOLD">200</span></p>
-                                    <p>End Block: <span className="BOLD">972356725723</span></p>
-                                    <p>Token Locked: <span className="BOLD">70</span></p>
-                                    <button className="VoteCancel" onClick={this.refuse}>Withdraw</button>
-                                </div>
-                            </li>)}
+                            {this.state && this.state.surveys && this.state.surveys.map(this.renderSurvey)}
                         </ul>
                         <h2><span className="BOLD">Proposal </span> | History</h2>
                         <ul>
-                            {this.state && this.state.surveys && this.state.surveys.map(it => <li key={it.codeName}>
-                                {it.codeName && [<div className="NavGovernTitle">
-                                    <p><span className="BOLD">{it.codeName || "NONE"}</span></p>
-                                    <a href="">{it.proposalAddress || "Smart Contract"}</a>
-                                    {it.replaced && <div>
-                                        <label>Repplace:</label>
-                                        <span>{it.replaced}</span>
-                                    </div>}
-                                </div>,
-                                <div className="NavGovernNerd">
-                                    <p>submitable: <span className="BOLD">{it.submitable}</span></p>
-                                    <p>internal: <span className="BOLD">{it.isInternal}</span></p>
-                                    <p>sender: <span className="BOLD">{it.needsSender}</span></p>
-                                    <p>Method Signature: <span className="BOLD">{it.methodSignature}</span></p>
-                                    <p>Output Values:</p>
-                                    <span>{JSON.stringify(it.returnAbiParametersArray)}</span>
-                                </div>]}
-                                <div className="NavGovernVote">
-                                    <h3 htmlFor="amount">Results</h3>
-                                    <p>Accepted: <span className="BOLD">99</span></p>
-                                    <p>Refused: <span className="BOLD">200</span></p>
-                                    <p>Start Block: <span className="BOLD">962356725723</span></p>
-                                    <p>End Block: <span className="BOLD">972356725723</span></p>
-                                    <p>Token Locked: <span className="BOLD">0</span></p>
-                                    <button className="VoteCancel" onClick={this.refuse}>Withdraw</button>
-                                </div>
-                            </li>)}
+                            {this.state && this.state.terminatedSurveys && this.state.terminatedSurveys.map(this.renderSurvey)}
                         </ul>
                     </div>
                 </div>

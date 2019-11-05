@@ -29,11 +29,11 @@ var Propose = React.createClass({
                             <input id="functionalitySubmitable" type="checkbox" />
                         </div>
                         <div>
-                            <label htmlFor="functionalityInternal">Is internal? (callable from other functions)</label>
+                            <label htmlFor="functionalityInternal">Is internal? (callable from other functionality only)</label>
                             <input id="functionalityInternal" type="checkbox" />
                         </div>
                         <div className="special">
-                            <label htmlFor="functionalityNeedsSender">need a sender?</label>
+                            <label htmlFor="functionalityNeedsSender">needs sender?</label>
                             <input id="functionalityNeedsSender" type="checkbox" />
                         </div>
                         <div>

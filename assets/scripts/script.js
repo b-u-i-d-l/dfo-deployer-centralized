@@ -22,7 +22,7 @@ async function enableMetamask() {
 
 function onMetamaskUpdate() {
     setTimeout(function() {
-        if(window.web3.currentProvider.chainId !== '0x1' && window.web3.currentProvider.chainId !== '0x3') {
+        if (window.web3.currentProvider.chainId !== '0x1' && window.web3.currentProvider.chainId !== '0x3') {
             return alert("Actually we only support Mainnet and Ropsten.");
         }
         $.publish('metamask/update');
@@ -74,6 +74,7 @@ function getData(root) {
 
 function createContract(abi, bin) {
     var args = [];
+    args.push(window.web3.eth.contract(abi));
     if (arguments.length > 2) {
         for (var i = 2; i < arguments.length; i++) {
             args.push(arguments[i]);
@@ -84,38 +85,53 @@ function createContract(abi, bin) {
         data: bin,
         gas: '8000000'
     });
-    return new Promise(function(ok, ko) {
-        args.push(function(e, contract) {
-            (e || contract.address) && console.log(e, contract);
-            if (e) {
-                return ko(e);
-            }
-            if (typeof contract.address !== 'undefined') {
-                console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                return ok(contract);
-            }
-        });
-        var cnt = window.web3.eth.contract(abi);
-        cnt.new.apply(cnt, args);
-    });
+    return blockchainCall.apply(null, args);
 }
 
 async function loadFunctionalities(dFO) {
-    var functionalitiesAmount = await new Promise(function(ok, ko) {
-        dFO.getFunctionalitiesAmount(function(e, data) {
-            if(e) {
-                return ko(e.message || e);
-            }
-            return ok(data.toNumber());
-        });
-    });
-    var functionalities = await new Promise(function(ok, ko) {
-        dFO.functionalitiesToJSON(function(e, data) {
-            if(e) {
-                return ko(e.message || e);
-            }
-            return ok(data);
-        });
-    });
+    //var functionalitiesAmount = await blockchainCall(dFO.getFunctionalitiesAmount).toNumber();
+    var functionalities = await blockchainCall(dFO.functionalitiesToJSON);
     return JSON.parse(functionalities);
 };
+
+function blockchainCall(call) {
+    var args = [];
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args.push(arguments[i]);
+        }
+    }
+    return new Promise(function(ok, ko) {
+        args.push(async function(e, data) {
+            try {
+                if (e) {
+                    return ko(e);
+                }
+                if (data && data.transactionHash && !data.blockNumber) {
+                    return ok(args[0].at((await waitForReceipt(data.transactionHash)).contractAddress));
+                }
+                return ok(data);
+            } catch (e) {
+                return ko(e);
+            }
+        });
+        (call.implementation ? call.get : call.new ? call.new : call).apply(call, args);
+    });
+}
+
+function waitForReceipt(transactionHash) {
+    return new Promise(function(ok, ko) {
+        var callback = async function() {
+            try {
+                var transactionReceipt = await blockchainCall(web3.eth.getTransactionReceipt, transactionHash);
+                if (transactionReceipt) {
+                    return ok(transactionReceipt);
+                }
+            } catch (e) {
+                return ko(e);
+            }
+            setTimeout(callback, 15000);
+        }
+        callback();
+    });
+}

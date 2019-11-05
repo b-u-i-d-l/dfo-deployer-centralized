@@ -3,34 +3,33 @@ var GovernController = function(view) {
     context.view = view;
 
     context.loadSurveys = async function loadSurveys() {
-        return window.context.mockFunctionalities;
-        var allSurveys = await new Promise(function(ok, ko) {
-            context.view.props.dFO.Proposal({}, {fromBlock: 0}).get(function(e, data) {
-                if(e) {
-                    return ko(e);
-                }
-                return ok(data);
-            });
-        });
-        allSurveys = Enumerable.From(allSurveys).Select(it => it.args.proposal);
-        var terminatedSurveys = await new Promise(function(ok, ko) {
-            context.view.props.dFO.ProposalSet({}, {fromBlock: 0}).get(function(e, data) {
-                if(e) {
-                    return ko(e);
-                }
-                return ok(data);
-            });
-        });
-        terminatedSurveys = Enumerable.From(terminatedSurveys).Select(it => it.args.proposal);
-        allSurveys = allSurveys.Where(it => !terminatedSurveys.Contains(it)).ToArray();
-        return allSurveys;
+        var allSurveys = await blockchainCall(context.view.props.dFO.Proposal({}, {fromBlock: 0}));
+        allSurveys = Enumerable.From(allSurveys).Select(it => ({proposal: it.args.proposal, block: it.blockNumber}));
+        var terminatedSurveyAddresses = await blockchainCall(context.view.props.dFO.ProposalSet({}, {fromBlock: 0}));
+        terminatedSurveyAddresses = Enumerable.From(terminatedSurveyAddresses).Select(it => ({proposal: it.args.proposal, block: it.blockNumber}));
+        allSurveys = allSurveys.Where(it => !terminatedSurveyAddresses.Any(elem => it.proposal === elem.proposal)).ToArray();
+        var surveys = [];
+        for(var i in allSurveys) {
+            surveys.push(await context.loadSurvey(allSurveys[i]));
+        }
+        terminatedSurveyAddresses = terminatedSurveyAddresses.ToArray();
+        var terminatedSurveys = [];
+        for(var i in terminatedSurveyAddresses) {
+            terminatedSurveys.push(await context.loadSurvey(terminatedSurveyAddresses[i]));
+        }
+        var currentBlock = await blockchainCall(window.web3.eth.getBlockNumber);
+        surveys = Enumerable.From(surveys);
+        surveys.Where(it => it.endBlock < currentBlock).ForEach(it => terminatedSurveys.push(it));
+        surveys = surveys.Where(it => it.endBlock >= currentBlock).OrderBy(it => it.startBlock).ToArray();
+        terminatedSurveys = Enumerable.From(terminatedSurveys).Where(it => it.endBlock < currentBlock).OrderBy(it => it.startBlock).ToArray();
+        return {surveys, terminatedSurveys, currentBlock};
     };
 
-    context.getSurveyData = async function getSurveyData(address) {
-        var contract = window.web3.eth.contract(window.context.propsalAbi).at(address);
-
-        return new Promise(function(ok, ko) {
-            
-        });
-    }
+    context.loadSurvey = async function loadSurvey(survey) {
+        var data = await blockchainCall(window.web3.eth.contract(window.context.propsalAbi).at(survey.proposal).toJSON);
+        data = JSON.parse(data);
+        data.address = survey.proposal;
+        data.startBlock = survey.block;
+        return data;
+    };
 };

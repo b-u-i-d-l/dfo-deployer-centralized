@@ -1,4 +1,4 @@
-var ProposeController = function(view) {
+var ProposeController = function (view) {
     var context = this;
     context.view = view;
 
@@ -14,26 +14,19 @@ var ProposeController = function(view) {
         }
         context.view.emit('loader/toggle');
         context.view.emit('message', 'Proposing Feature...');
-        var address = await new Promise(function(ok, ko) {
-            context.view.props.dFO.newProposal(
-                data.functionalityName,
-                data.functionalityAddress,
-                data.functionalitySubmitable,
-                data.functionalityMethodSignature,
-                data.functionalityOutputParameters,
-                data.functionalityInternal,
-                data.functionalityNeedsSender,
-                data.functionalityReplace,
-                function(e, data) {
-                    if(e) {
-                        return ko(e);
-                    }
-                    ok(data);
-                }
-            );
-        });
+        var transactionReceipt = await waitForReceipt(await blockchainCall(
+            context.view.props.dFO.newProposal,
+            data.functionalityName,
+            data.functionalityAddress,
+            data.functionalitySubmitable,
+            data.functionalityMethodSignature,
+            data.functionalityOutputParameters,
+            data.functionalityInternal,
+            data.functionalityNeedsSender,
+            data.functionalityReplace
+        ));
         context.view.emit('message', 'Proposal sent!');
         context.view.emit('loader/toggle');
-        return address;
+        return transactionReceipt;
     }
 };
