@@ -10,12 +10,14 @@ var GovernController = function(view) {
         allSurveys = allSurveys.Where(it => !terminatedSurveyAddresses.Any(elem => it.proposal === elem.proposal)).ToArray();
         var surveys = [];
         for(var i in allSurveys) {
-            surveys.push(await context.loadSurvey(allSurveys[i]));
+            var data = await context.loadSurvey(allSurveys[i]);
+            data && surveys.push(data);
         }
         terminatedSurveyAddresses = terminatedSurveyAddresses.ToArray();
         var terminatedSurveys = [];
         for(var i in terminatedSurveyAddresses) {
-            terminatedSurveys.push(await context.loadSurvey(terminatedSurveyAddresses[i]));
+            var data = await context.loadSurvey(terminatedSurveyAddresses[i]);
+            data && terminatedSurveys.push(data);
         }
         var currentBlock = await blockchainCall(window.web3.eth.getBlockNumber);
         surveys = Enumerable.From(surveys);
@@ -26,10 +28,24 @@ var GovernController = function(view) {
     };
 
     context.loadSurvey = async function loadSurvey(survey) {
-        var data = await blockchainCall(window.web3.eth.contract(window.context.propsalAbi).at(survey.proposal).toJSON);
-        data = JSON.parse(data);
-        data.address = survey.proposal;
-        data.startBlock = survey.block;
-        return data;
+        try {
+            var data = await blockchainCall(window.web3.eth.contract(window.context.propsalAbi).at(survey.proposal).toJSON);
+            data = JSON.parse(data);
+            data.address = survey.proposal;
+            data.startBlock = survey.block;
+            return data;
+        } catch(e) {
+            console.error(e);
+        }
+    };
+
+    context.vote = async function vote(survey, type, amount) {
+        var contract = web3.eth.contract(window.context.propsalAbi).at(survey.address);
+        context.view.emit('loader/toggle');
+        context.view.emit('message', 'Voting...');
+        await blockchainCall(contract[type], amount);
+        context.view.emit('message', 'Vote sent!');
+        context.view.emit('loader/toggle');
+        setTimeout(() => context.view.forceUpdate());
     };
 };

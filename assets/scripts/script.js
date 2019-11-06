@@ -3,6 +3,7 @@ async function Main() {
         return;
     }
     await loadContext();
+    window.abi = new Web32().eth.abi;
 }
 
 async function enableMetamask() {
@@ -91,10 +92,21 @@ function createContract(abi, bin) {
 async function loadFunctionalities(dFO) {
     //var functionalitiesAmount = await blockchainCall(dFO.getFunctionalitiesAmount).toNumber();
     var functionalities = await blockchainCall(dFO.functionalitiesToJSON);
-    return JSON.parse(functionalities);
+    functionalities = JSON.parse(functionalities);
+    for(var i in functionalities) {
+        var functionality = functionalities[i];
+        functionality.inputParameters = [];
+        try {
+            functionality.inputParameters = functionality.methodSignature.split(functionality.methodSignature.substring(0, functionality.methodSignature.indexOf('(') + 1)).join('').split(')').join('');
+            functionality.inputParameters = functionality.inputParameters ? functionality.inputParameters.split(',') : [];
+        } catch(e) {
+        }
+    }
+    return functionalities;
 };
 
 function blockchainCall(call) {
+    var _call = call;
     var args = [];
     if (arguments.length > 1) {
         for (var i = 1; i < arguments.length; i++) {
@@ -108,7 +120,7 @@ function blockchainCall(call) {
                     return ko(e);
                 }
                 if (data && data.transactionHash && !data.blockNumber) {
-                    return ok(args[0].at((await waitForReceipt(data.transactionHash)).contractAddress));
+                    return ok(_call.at((await waitForReceipt(data.transactionHash)).contractAddress));
                 }
                 return ok(data);
             } catch (e) {

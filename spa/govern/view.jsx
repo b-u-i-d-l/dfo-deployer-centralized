@@ -3,11 +3,12 @@ var Govern = React.createClass({
         var _this = this;
         this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
     },
-    accept(e) {
+    vote(e, survey) {
         e && e.preventDefault(true) && e.stopPropagation(true);
-    },
-    refuse(e) {
-        e && e.preventDefault(true) && e.stopPropagation(true);
+        var $element = $(e.target);
+        var amount = parseInt($element.parent().find('.voteAmount').val());
+        var type = $element.hasClass('VoteYep') ? "accept" : "refuse";
+        this.controller.vote(survey, type, amount).catch(e => _this.emit('message', e.message || e, 'error'));
     },
     renderSurvey(survey) {
         return (<li key={survey.codeName}>
@@ -34,9 +35,9 @@ var Govern = React.createClass({
             <div className="NavGovernVote">
                 {survey.endBlock >= this.state.currentBlock && [
                     <h3 htmlFor="amount">Vote</h3>,
-                    <input type="number" ref={ref => this.amount = ref} id="amount" min="0" placeholder="Token Amount"/>,
-                    <button className="VoteYep" onClick={this.accept}>Accept</button>,
-                    <button className="VoteNope" onClick={this.refuse}>Refuse</button>
+                    <input type="number" className="voteAmount" min="1" placeholder="Token Amount"/>,
+                    <button className="VoteYep" onClick={e => this.vote(e, survey)}>Accept</button>,
+                    <button className="VoteNope" onClick={e => this.vote(e, survey)}>Refuse</button>
                 ]}
                 <h3 htmlFor="amount">Status</h3>
                 <p>Start Block: <span className="BOLD">{survey.startBlock}</span></p>

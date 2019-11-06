@@ -42,7 +42,7 @@ var Propose = React.createClass({
                             <input id="functionalityMethodSignature" type="text" />
                         </div>
                         <div className="special">
-                            <label htmlFor="functionalityOutputParameters">Output Values (separated by space):</label>
+                            <label htmlFor="functionalityOutputParameters">Output Values (separated by spaces):</label>
                             <input id="functionalityOutputParameters" type="text" />
                         </div>
                         <div>

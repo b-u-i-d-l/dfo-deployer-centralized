@@ -12,6 +12,11 @@ var ProposeController = function (view) {
         if (errors.length > 0) {
             throw errors;
         }
+        try {
+            data.functionalityOutputParameters = JSON.stringify(data.functionalityOutputParameters.split(""));
+        } catch(e) {
+            data.functionalityOutputParameters = "[]";
+        }
         context.view.emit('loader/toggle');
         context.view.emit('message', 'Proposing Feature...');
         var transactionReceipt = await waitForReceipt(await blockchainCall(
