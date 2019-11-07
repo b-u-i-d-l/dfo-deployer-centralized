@@ -47,7 +47,7 @@ var Propose = React.createClass({
                         </div>
                         <div>
                             <h4 className="BOLD">Edit Functionality</h4>
-                            <label htmlFor="functionalityReplace">Update an Existing Function?:</label>
+                            <label htmlFor="functionalityReplace">Update an Existing Functionality?</label>
                             <select id="functionalityReplace">
                                 <option selected="true">NONE</option>
                                 {this.state && this.state.functionalities && this.state.functionalities.map(it => <option key={it.codeName}>{it.codeName}</option>)}

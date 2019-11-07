@@ -13,7 +13,7 @@ var ProposeController = function (view) {
             throw errors;
         }
         try {
-            data.functionalityOutputParameters = JSON.stringify(data.functionalityOutputParameters.split(""));
+            data.functionalityOutputParameters = JSON.stringify(data.functionalityOutputParameters.split(" "));
         } catch(e) {
             data.functionalityOutputParameters = "[]";
         }

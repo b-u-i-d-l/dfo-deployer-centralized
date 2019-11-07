@@ -9,8 +9,8 @@ var Run = React.createClass({
         var args = [];
         var _this = this;
         if(this[element.codeName + 'Input']) {
-            this[element.codeName + 'Input'].children().each((i, element) => {
-                var $element = $($(element).children()[1]);
+            this[element.codeName + 'Input'].children().each((i, elem) => {
+                var $element = $($(elem).children()[1]);
                 var val = $element.val();
                 $element.is('input[type="number"]') && (val = parseInt(val));
                 $element.is('select') && (val = val === 'true');
@@ -28,7 +28,7 @@ var Run = React.createClass({
             return;
         }
         var _this = this;
-        return (<ul ref={ref => this[element.codeName + 'Input'] = $(ref)}>
+        return (<ul ref={ref => element.inputParameters && element.inputParameters.length > 0 && (this[element.codeName + 'Input'] = $(ref))}>
             {element.inputParameters.map(it => <li key={it}>
                 <label>{it}</label>
                 {"\u00a0"}

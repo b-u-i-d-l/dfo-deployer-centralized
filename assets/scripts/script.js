@@ -3,7 +3,8 @@ async function Main() {
         return;
     }
     await loadContext();
-    window.abi = new Web32().eth.abi;
+    window.abi = ethers.utils.defaultAbiCoder;
+    choosePage();
 }
 
 async function enableMetamask() {
@@ -59,6 +60,63 @@ async function loadContext() {
     var x = await fetch('data/context.json');
     window.context = await x.text();
     window.context = JSON.parse(window.context);
+}
+
+function choosePage() {
+    var page = undefined;
+    try {
+        page = window.location.pathname.split('/').join('').split('.html').join('');
+    } catch (e) {}
+    page = (page || 'index') + 'Main';
+
+    try {
+        var maybePromise = window[page] && window[page]();
+        maybePromise && maybePromise.catch && maybePromise.catch(console.error);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function indexMain() {
+    Boot();
+}
+
+async function demoMain() {
+    var address = '';
+    try {
+        address = window.location.search.split(' ').join('').split('/').join('').split('?addr=').join('');
+    } catch(e) {
+    }
+    if(!isEthereumAddress(address)) {
+        alert('You must provide a valid ethereum address');
+        window.location.href = "/";
+        return;
+    }
+    window.address = address;
+    window.dFO = window.web3.eth.contract(window.context.mvdAbi).at(address);
+    try {
+        var amount = (await blockchainCall(window.dFO.getFunctionalitiesAmount)).toNumber();
+        if(amount === 0) {
+            throw "Bad address"
+        }
+    } catch(e) {
+        alert('You must provide the ethereum address of a valid DFO');
+        window.location.href = "/";
+        return;
+    }
+    var interval = async function() {
+        var _element = document.getElementById('bodyStyle');
+        var data = '';
+        try {
+            data = await window.blockchainCall(window.dFO.read, 'bodyStyle', '0x0');
+            data = window.abi.decode(['string'], data)[0];
+        } catch(e) {
+            console.log(e);
+        }
+        _element.innerHTML = data;
+    };
+    setInterval(interval, 7000);
+    interval();
 }
 
 function getData(root) {
@@ -142,8 +200,39 @@ function waitForReceipt(transactionHash) {
             } catch (e) {
                 return ko(e);
             }
-            setTimeout(callback, 15000);
+            setTimeout(callback, 5000);
         }
         callback();
+    });
+}
+
+function decodeAbiParameters(parameters, data) {
+    if(!parameters || parameters.length === 0) {
+        return data;
+    }
+    data = window.abi.decode(parameters, data);
+    data = (data.length || data.__length__) === 1 ? data[0].toNumber ? data[0].toNumber() : data[0] : data;
+    if(data.length) {
+        for(var i in data) {
+            var elem = data[i];
+            data[i] = elem.toNumber ? elem.toNumber() : elem;
+        }
+    }
+    if(data.__length__) {
+        var keys = Object.keys(data);
+        for(var i in keys) {
+            if(isNaN(keys[i])) {
+                continue;
+            }
+            var elem = data[keys[i]];
+            data[keys[i]] = elem.toNumber ? elem.toNumber() : elem;
+        }
+    }
+    return data;
+}
+
+window.onload = function() {
+    Main().catch(function(e) {
+        return alert(e.message || e);
     });
 }

@@ -10,6 +10,10 @@ var Govern = React.createClass({
         var type = $element.hasClass('VoteYep') ? "accept" : "refuse";
         this.controller.vote(survey, type, amount).catch(e => _this.emit('message', e.message || e, 'error'));
     },
+    set(e, survey) {
+        e && e.preventDefault(true) && e.stopPropagation(true);
+        this.controller.set(survey).catch(e => _this.emit('message', e.message || e, 'error'));
+    },
     renderSurvey(survey) {
         return (<li key={survey.codeName}>
             <div className="NavGovernTitle">
@@ -39,6 +43,7 @@ var Govern = React.createClass({
                     <button className="VoteYep" onClick={e => this.vote(e, survey)}>Accept</button>,
                     <button className="VoteNope" onClick={e => this.vote(e, survey)}>Refuse</button>
                 ]}
+                {survey.endBlock < this.state.currentBlock && !survey.set && <button onClick={e => this.set(e, survey)}>Finalize Survey</button>}
                 <h3 htmlFor="amount">Status</h3>
                 <p>Start Block: <span className="BOLD">{survey.startBlock}</span></p>
                 <p>End Block: <span className="BOLD">{survey.endBlock}</span></p>

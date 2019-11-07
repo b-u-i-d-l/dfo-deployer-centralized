@@ -21,9 +21,3 @@ function Boot() {
         }
     });
 }
-
-$(document).ready(function() {
-    Main().then(Boot).catch(function(e) {
-        return alert(e.message || e);
-    });
-});
