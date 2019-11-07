@@ -1,7 +1,18 @@
 var Govern = React.createClass({
     componentDidMount() {
         var _this = this;
-        this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
+        _this.setState({currentBlock : 99999, surveys : [
+            {
+                codseName : 'ciao',
+                location:'0xabc',
+                methodsignature: 'read',
+                startBlock : 0,
+                endBlock : 99999,
+                accept: 0,
+                refuse: 0
+            }
+        ]});
+        //this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
     },
     vote(e, survey) {
         e && e.preventDefault(true) && e.stopPropagation(true);

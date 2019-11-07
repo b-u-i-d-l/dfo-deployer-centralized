@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavChooser {margin-block-end: 0;margin-block-start: 0;padding-inline-start: 0;width: 98%;}
 .NavAll .NavChooser li {width: 32%; padding:  9px 0 10px 0;}
 .NavAll .NavChooser li a {font-size: 12px; font-weight: bold;}
+.NavAll .NavGovern ul {width: 100%;}
 .NavAll .NavDeploy, .NavAll .NavPropose, .NavAll .NavGovern { width: 92%; padding: 10px 0;}
 .NavAll .NavDeploy > div, .NavAll .NavPropose > div { width: 90%; text-align: center;}
 .NavAll .NavDeploy > div > label, .NavAll .NavPropose > div > label {width: 90%; margin-bottom: 10px;}
