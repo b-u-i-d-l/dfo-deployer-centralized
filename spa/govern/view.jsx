@@ -58,7 +58,6 @@ var Govern = React.createClass({
             <section className="Nav">
                 <div className="NavAll">
                     <div className="NavGovern">
-                        <h2><span className="BOLD"></span> Coming Soon</h2>
                         <h2><span className="BOLD">Proposal </span> | In Progress</h2>
                         <ul>
                             {this.state && this.state.surveys && this.state.surveys.map(this.renderSurvey)}
