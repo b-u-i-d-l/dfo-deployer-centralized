@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .NavAll .NavChooser {text-decoration: none; text-align: center; display: inline-block; width: 720px;}
 .NavAll .NavChooser li {display: inline-block; width: 30%; padding: 10px 0 15px 0; border-bottom: 1px solid #cccccc; text-align: center;}
 .NavAll .NavChooser li:hover {border-bottom: 1px solid #000000;}
-.NavAll .NavChooser li a {font-size: 18px; color: #545454; text-decoration: none;}
+.NavAll .NavChooser li a {font-size: 18px; color: #545454; text-decoration: none; display: inline-block; width: 100%; text-align: center;}
 .NavAll .NavChooser li:hover a {color: #000000; font-weight: bold;}
 .NavAll .NavChooser .selected, .NavAll .NavChooser .selected:hover {background-color: #000000; border-bottom:1px solid #000000;}
 .NavAll .NavChooser .selected a, .NavAll .NavChooser .selected:hover a {font-weight: bold; color: #ffffff;}
