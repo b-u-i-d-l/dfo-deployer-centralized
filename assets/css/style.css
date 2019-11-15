@@ -1,4 +1,4 @@
-body { background-color:  #000000; width: 100%; position: relative;line-height:1; overflow: scroll; position: relative; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Open Sans", "Helvetica Neue", "Helvetica", "verdana", "sans-serif";}
+body { background-color:  #000000; width: 100%; position: relative;line-height:1; overflow: scroll; position: relative; margin:0px auto;  line-height:1; padding:0px 0; font-family: "Courier New", "Lucida Console", "Courier", "Times", "Arial";}
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main {width: 100%; background-color: transparent; text-align: center; position: relative;}
 .Main .MainLoader {width: 100%; position: fixed; top: 0; left: 0; background-color: #000000f2; z-index: 8888; height: 100%; overflow: hidden;}
@@ -10,9 +10,9 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainAwesome .GIFY {width:50%;height:0;padding-bottom:15%;position:relative; margin: 0 auto;}
 .Main .MainAwesome h4 {font-size: 35px; text-align: center; color: #ffffff; display: inline-block; width: 100%; margin: 50px 0 0 0; font-weight: bold;}
 .Main .MainAwesome p {font-size: 13px; text-align: center; color: #ffffff; display: inline-block; width: 500px; line-height: 1.2;}
-.Main .MainAwesome .MainBtn {width: 100%; display: inline-block; margin: 60px 0 10px 0; text-align: center; clear: both;}
-.Main .MainAwesome .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 25px; text-decoration: underline; color: #ff00ff; font-size: 18px;font-weight: bold;}
-.Main .MainAwesome .MainBtn a:hover {background-color: #ff00ff; color: #000000; text-decoration: none;}
+.Main .MainAwesome .MainBtn, .UnderstandingDFO .MainBtn {width: 100%; display: inline-block; margin: 60px 0 10px 0; text-align: center; clear: both;}
+.Main .MainAwesome .MainBtn a, .UnderstandingDFO .MainBtn a {margin: 0 30px; display: inline-block; padding: 10px 25px; text-decoration: underline; color: #ff00ff; font-size: 18px;font-weight: bold;}
+.Main .MainAwesome .MainBtn a:hover, .UnderstandingDFO .MainBtn a:hover {background-color: #ff00ff; color: #000000; text-decoration: none;}
 .Main .MainLoad {display: inline-block; width: 990px; background-color: #000000; margin: 50px auto 90px auto;}
 .Main .MainLoad input {width: 89%; background-color: #0a0a0a; border: none; height: 90px; font-size: 35px; outline: none; color: #ffff00; font-weight: lighter;}
 .Main .MainLoad input:hover, .Main .MainLoad input:focus, .Main .MainLoad input:active {background-color: #151515; border-bottom: 2px solid #ffff00;} 
@@ -26,7 +26,24 @@ h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 .Main .MainMsg_warning {background-color: #ff00ff;}
 .Main .MainMsg_error {background-color: #ff0000;}
 .Main .MainMsg_success {background-color: #00ff00;}
-.NoWeb3 {width: 100%; background-color: #000000;}
+.NoWeb3 {width: 100%; background-color: #000000; text-align: center;}
+.NoWeb3 > figure {width: 100%; display: inline-block; height: 200px; margin: 50px auto; text-align: center;}
+.NoWeb3 > figure img {width: 200px;height: 200px;}
+.NoWeb3 .DisclamerWeb3 {width: 500px; text-align: center; display: inline-block; margin: 10px auto;}
+.NoWeb3 .DisclamerWeb3 h2 {font-size: 30px; font-weight: lighter; color: #ff00ff;}
+.NoWeb3 .DisclamerWeb3 p {font-size: 16px; color: #ffffff; line-height: 1.4;}
+.NoWeb3 .DisclamerWeb3 p a {font-size: 15px; color: #00ff00; font-weight: bold; padding: 0 3px;}
+.NoWeb3 .DisclamerWeb3 p a:hover {color: #000000; background-color: #00ff00; text-decoration: none;}
+.UnderstandingDFO {width: 750px; background-color: #000000; margin: 0 auto 30px auto; text-align: left;}
+.UnderstandingDFO h1 {font-size: 40px; color: #ffff00;}
+.UnderstandingDFO h3 {font-size: 25px; color: #ffffff; font-weight: bold; line-height: 1.2;}
+.UnderstandingDFO h4 {font-size: 20px; color: #ffffff; font-weight: bold; line-height: 1.2;}
+.UnderstandingDFO p {font-size: 16px; color: #ffffff; line-height: 1.2;}
+.UnderstandingDFO ul {width: 100%;display: inline-block;}
+.UnderstandingDFO ul li {width: 650px; color: #00ffff;}
+.UnderstandingDFO ul li h4 {color: #00ffff; font-weight: normal;}
+.UnderstandingDFO > figure {width: 750px; display: inline-block; margin: 0;}
+.UnderstandingDFO > figure img {width: 750px;}
 
 .Nav {width: 100%; background-color: #f1f1f1; text-align: center;  display: inline-block; padding: 30px 0;}
 .NavAll {width: 100%; text-align: center;  display: inline-block;}

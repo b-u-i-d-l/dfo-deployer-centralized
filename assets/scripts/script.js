@@ -9,7 +9,7 @@ async function Main() {
 
 async function enableMetamask() {
     if (typeof window.ethereum === 'undefined') {
-        throw 'To use this application, you need Metamask Extension installed.';
+        return;
     }
     try {
         await window.ethereum.enable();
