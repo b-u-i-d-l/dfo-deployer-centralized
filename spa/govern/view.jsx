@@ -1,18 +1,7 @@
 var Govern = React.createClass({
     componentDidMount() {
         var _this = this;
-        _this.setState({currentBlock : 99999, surveys : [
-            {
-                codseName : 'ciao',
-                location:'0xabc',
-                methodsignature: 'read',
-                startBlock : 0,
-                endBlock : 99999,
-                accept: 0,
-                refuse: 0
-            }
-        ]});
-        //this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
+        _this.controller.loadSurveys().then(data => _this.setState(data)).catch(e => _this.emit('message', e.message || e, "error"));
     },
     vote(e, survey) {
         e && e.preventDefault(true) && e.stopPropagation(true);
@@ -21,15 +10,19 @@ var Govern = React.createClass({
         var type = $element.hasClass('VoteYep') ? "accept" : "refuse";
         this.controller.vote(survey, type, amount).catch(e => _this.emit('message', e.message || e, 'error'));
     },
-    set(e, survey) {
+    terminate(e, survey) {
         e && e.preventDefault(true) && e.stopPropagation(true);
-        this.controller.set(survey).catch(e => _this.emit('message', e.message || e, 'error'));
+        this.controller.terminate(survey).catch(e => _this.emit('message', e.message || e, 'error'));
     },
     renderSurvey(survey) {
         return (<li key={survey.codeName}>
             <div className="NavGovernTitle">
                 {survey.codeName && <p><span className="BOLD">{survey.codeName || "NONE"}</span></p>}
-                {survey.location && <a href={getEtherscanURL() + "address/" + survey.location} target="_blank">{"Smart Contract"}</a>}
+                {survey.address && <a href={getEtherscanURL() + "address/" + survey.address} target="_blank">Survey Address</a>}
+                <br/><br/>
+                {survey.location && <a href={getEtherscanURL() + "address/" + survey.location} target="_blank">Smart Contract</a>}
+                <br/><br/>
+                <a href={"https://robe.ninja?id=" + survey.sourceLocationId} target="_blank">Source Code</a>
                 {survey.replaces && <div>
                     <label>Replace:</label>
                     <span>{survey.replaces}</span>
@@ -54,7 +47,7 @@ var Govern = React.createClass({
                     <button className="VoteYep" onClick={e => this.vote(e, survey)}>Accept</button>,
                     <button className="VoteNope" onClick={e => this.vote(e, survey)}>Refuse</button>
                 ]}
-                {survey.endBlock < this.state.currentBlock && !survey.set && <button onClick={e => this.set(e, survey)}>Finalize Survey</button>}
+                {survey.endBlock < this.state.currentBlock && !survey.terminated && <button onClick={e => this.terminate(e, survey)}>Finalize Survey</button>}
                 <h3 htmlFor="amount">Status</h3>
                 <p>Start Block: <span className="BOLD">{survey.startBlock}</span></p>
                 <p>End Block: <span className="BOLD">{survey.endBlock}</span></p>

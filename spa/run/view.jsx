@@ -1,30 +1,36 @@
 var Run = React.createClass({
     componentDidMount() {
         var _this = this;
-        loadFunctionalities(_this.props.dFO).then(functionalities => _this.setState({functionalities})).catch(e => _this.emit('message', e.message || e, 'error'));
+        loadFunctionalities(_this.props.dFO).then(functionalities => _this.setState({ functionalities })).catch(e => _this.emit('message', e.message || e, 'error'));
     },
     onClick(e, element) {
-        e && e.preventDefault(true) && e.stopPropagation();
+        e && e.preventDefault(true) && e.stopPropagation(true);
         var type = $(e.target).hasClass('RwWrite') ? 'submit' : 'read';
         var args = [];
         var _this = this;
-        if(this[element.codeName + 'Input']) {
+        if (this[element.codeName + 'Input']) {
             this[element.codeName + 'Input'].children().each((i, elem) => {
                 var $element = $($(elem).children()[1]);
                 var val = $element.val();
                 $element.is('input[type="number"]') && (val = parseInt(val));
                 $element.is('select') && (val = val === 'true');
-                args.push(val);
+                val !== undefined && args.push(val);
             });
         }
-        this.controller.call(type, element.codeName, element.inputParameters, args, element.returnAbiParametersArray).then(r => {
-            var response = ((_this.state && _this.state.response) || {});
-            response[element.codeName] = r;
-            this.setState({response});
-        }).catch(e => _this.emit('message', e.message || e, "error"));
+        var _this = this;
+        var r = (_this.state && _this.state.response) || [];
+        delete r[element.codeName];
+        this.emit('message');
+        _this.setState({response: r}, function() {
+            _this.controller.call(type, element.codeName, element.inputParameters, args, element.returnAbiParametersArray).then(r => {
+                var response = ((_this.state && _this.state.response) || {});
+                response[element.codeName] = r;
+                _this.setState({ response });
+            }).catch(e => _this.emit('message', e.message || e, "error"));
+        });
     },
     renderInput(element) {
-        if(element.isInternal || !element.methodSignature) {
+        if (element.isInternal || !element.methodSignature) {
             return;
         }
         var _this = this;
@@ -45,19 +51,27 @@ var Run = React.createClass({
         var _this = this;
         return (
             <div className="NavAll">
-                    <h2><span className="BOLD">The DFO </span> | Explore</h2>
-                    <ul className="NavRunRw">
-                    {this.state && this.state.functionalities && this.state.functionalities.map(it =><li key={it.codeName}>
+                <h2><span className="BOLD">The DFO </span> | Explore</h2>
+                <div>
+                    <h2>{this.props.tokenName}({this.props.tokenSymbol}) | <a target="_blank" href={window.getEtherscanURL() + "address/" + this.props.dFO.address}>DFO Address</a> | <a target="_blank" href={window.getEtherscanURL() + "token/" + this.props.tokenAddress}>Token Address</a></h2>
+                </div>
+                <ul className="NavRunRw">
+                    {this.state && this.state.functionalities && this.state.functionalities.map(it => <li key={it.codeName}>
                         <span className="RwCn">{it.codeName}</span>
                         {this.renderInput(it)}
                         {!it.isInternal && it.submitable && <button className="RwWrite" onClick={e => _this.onClick(e, it)}>Write</button>}
                         {!it.isInternal && !it.submitable && <button className="RwRead" onClick={e => _this.onClick(e, it)}>Read</button>}
                         {it.isInternal && <span className="RwIntern">Internal</span>}
+                        <br/><br/>
                         <a target="_blank" className="RwSm" href={getEtherscanURL() + "address/" + it.location}>Smart Contract</a>
-                        {it.proposalAddress && parseInt(it.proposalAddress.toLowerCase().split("x").join("")) >0 &&  <a target="_blank" className="RwPa" href={getEtherscanURL() + "address/" + it.proposalAddress}>History</a>}
-                    </li> )}
-                    </ul>
-            </div> 
+                        <br/><br/>
+                        <span className="RwSm">Method: {it.methodSignature}</span>
+                        <br/><br/>
+                        <a href={"https://robe.ninja?id=" + it.sourceLocationId} target="_blank">Source Code</a>
+                        {it.proposalAddress && parseInt(it.proposalAddress.toLowerCase().split("x").join("")) > 0 && <a target="_blank" className="RwPa" href={getEtherscanURL() + "address/" + it.proposalAddress}>History</a>}
+                    </li>)}
+                </ul>
+            </div>
         );
     }
 });

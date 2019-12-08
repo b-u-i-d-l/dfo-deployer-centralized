@@ -22,7 +22,7 @@ var DFORule = React.createClass({
                             <li><a href="javascript:;" onClick={this.onClick}>Propose</a></li>
                             <li><a href="javascript:;" onClick={this.onClick}>Govern</a></li>
                         </ul>
-                        {React.createElement(window[(this.state && this.state.element) || 'Run'],{dFO:this.props.dFO})}
+                        {React.createElement(window[(this.state && this.state.element) || 'Run'],{dFO:this.props.dFO, tokenAddress:this.props.tokenAddress, tokenName:this.props.tokenName, tokenSymbol:this.props.tokenSymbol})}
                 </div>
             </section>
         );

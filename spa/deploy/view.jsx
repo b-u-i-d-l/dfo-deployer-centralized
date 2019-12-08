@@ -7,6 +7,8 @@ var Deploy = React.createClass({
     onNetworkUpdate() {
         this.surveyValidationRulesAddress && (this.surveyValidationRulesAddress.value = window.web3.currentProvider.chainId === '0x3' ? context.surveyValidationRulesDefaultAddressRopsten : context.surveyValidationRulesDefaultAddress);
         this.defaultSurveyValidationRulesAddress && (this.defaultSurveyValidationRulesAddress.href = getEtherscanURL() + "address/" + this.surveyValidationRulesAddress.value + "#code");
+        this.surveyValidationRuleNFTId = window.web3.currentProvider.chainId === '0x3' ? context.surveyValidationRuleNFTIdRopsten : context.surveyValidationRuleNFTId;
+        this.mvdBlockLengthProviderId = window.web3.currentProvider.chainId === '0x3' ? context.mvdBlockLengthProviderIdRopsten : context.mvdBlockLengthProviderId;
     },
     deploy(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);

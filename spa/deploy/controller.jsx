@@ -15,18 +15,25 @@ var DeployController = function (view) {
             throw errors;
         }
         context.view.emit('loader/toggle');
-        context.view.emit('message', 'Transaction 1 of 3 - Creating MVD Functionality Proposal Factory...', 'info');
-        var mvdFunctionalityProposalFactory = await createContract(window.context.mvdFunctionalityProposalFactoryAbi, window.context.mvdFunctionalityProposalFactoryBin);
-        context.view.emit('message', 'Transaction 2 of 3 - Creating Survey Block Length...', 'info');
+        context.view.emit('message', 'Transaction 1 of 4 - Creating StateHolder...', 'info');
+        var stateHolder = await createContract(window.context.stateHolderAbi, window.context.stateHolderBin, '0x0000000000000000000000000000000000000000');
+        context.view.emit('message', 'Transaction 2 of 4 - Creating MVD Functionality Proposal Manager...', 'info');
+        var mvdFunctionalityProposalManager = await createContract(window.context.mvdFunctionalityProposalManagerAbi, window.context.mvdFunctionalityProposalManagerBin);
+        context.view.emit('message', 'Transaction 3 of 4 - Creating Survey Block Length...', 'info');
         var mvdBlockLengthProvider = await createContract(window.context.mvdBlockLengthProviderAbi, window.context.mvdBlockLengthProviderBin, data.surveyLength);
-        context.view.emit('message', 'Transaction 3 of 3 - Creating Your DFO...', 'info');
+        context.view.emit('message', 'Transaction 4 of 4 - Creating Your DFO...', 'info');
         var dFO =  await createContract(window.context.mvdAbi, window.context.mvdBin,
             data.dfoName,
             data.tokenSymbol,
             data.tokenDecimals,
             data.tokenTotalSupply,
-            mvdFunctionalityProposalFactory.address,
+            stateHolder.address,
+            mvdFunctionalityProposalManager.address,
+            window.getRobeAddress(),
+            context.view.mvdBlockLengthProviderId,
             mvdBlockLengthProvider.address,
+            window.getRobeAddress(),
+            context.view.surveyValidationRuleNFTId,
             data.surveyValidationRulesAddress
         );
         context.view.emit('message');

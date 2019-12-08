@@ -13,8 +13,8 @@ var GovernController = function(view) {
         var terminatedSurveys = [];
         var currentBlock = await blockchainCall(window.web3.eth.getBlockNumber);
         surveys = Enumerable.From(surveys);
-        surveys.Where(it => it.endBlock < currentBlock && it.set).ForEach(it => terminatedSurveys.push(it));
-        surveys = surveys.Where(it => it.endBlock >= currentBlock || !it.set).OrderBy(it => it.startBlock).ToArray();
+        surveys.Where(it => it.endBlock < currentBlock && it.terminated).ForEach(it => terminatedSurveys.push(it));
+        surveys = surveys.Where(it => it.endBlock >= currentBlock || !it.terminated).OrderBy(it => it.startBlock).ToArray();
         terminatedSurveys = Enumerable.From(terminatedSurveys).Where(it => it.endBlock < currentBlock).OrderByDescending(it => it.endBlock).ToArray();
         return {surveys, terminatedSurveys, currentBlock};
     };
@@ -41,11 +41,11 @@ var GovernController = function(view) {
         setTimeout(context.loadSurveys);
     };
 
-    context.set = async function set(survey) {
+    context.terminate = async function set(survey) {
         context.view.emit('loader/toggle');
-        context.view.emit('message', 'Setting...');
-        await waitForReceipt(await blockchainCall(web3.eth.contract(window.context.propsalAbi).at(survey.address).set));
-        context.view.emit('message', 'Set!');
+        context.view.emit('message', 'Finalizing Survey...');
+        await waitForReceipt(await blockchainCall(web3.eth.contract(window.context.propsalAbi).at(survey.address).terminate));
+        context.view.emit('message', 'Survey Finalized! Enjoy Your Brand new Functionalities!');
         context.view.emit('loader/toggle');
         setTimeout(context.loadSurveys);
     };

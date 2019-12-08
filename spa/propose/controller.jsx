@@ -22,6 +22,8 @@ var ProposeController = function (view) {
         var transactionReceipt = await waitForReceipt(await blockchainCall(
             context.view.props.dFO.newProposal,
             data.functionalityName,
+            window.getRobeAddress(),
+            data.functionalitySourceId,
             data.functionalityAddress,
             data.functionalitySubmitable,
             data.functionalityMethodSignature,

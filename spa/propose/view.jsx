@@ -19,6 +19,10 @@ var Propose = React.createClass({
                             <label htmlFor="functionalityName">Name:</label>
                             <input id="functionalityName" type="text" />
                         </div>
+                        <div>
+                            <label htmlFor="functionalitySourceId">SmartContract Source Code NFT:</label>
+                            <input id="functionalitySourceId" type="number" min="0"/>
+                        </div>
                         <div className="special">
                             <label htmlFor="functionalityAddress">SmartContract Address:</label>
                             <input id="functionalityAddress" type="text" />

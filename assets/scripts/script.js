@@ -35,6 +35,10 @@ function getEtherscanURL() {
     return "https://" + (window.web3.currentProvider.chainId === '0x3' ? 'ropsten.' : '') + "etherscan.io/";
 }
 
+function getRobeAddress() {
+    return window.web3.currentProvider.chainId === '0x3' ? context.robeAddressRopsten : context.robeAddress;
+}
+
 function isEthereumAddress(ad) {
     if (ad === undefined || ad === null) {
         return false;
