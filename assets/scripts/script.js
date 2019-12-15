@@ -146,7 +146,7 @@ function createContract(abi, bin) {
     args.push({
         from: window.web3.eth.accounts[0],
         data: bin,
-        gas: '8000000'
+        gas: '7900000'
     });
     return blockchainCall.apply(null, args);
 }
@@ -233,6 +233,12 @@ function decodeAbiParameters(parameters, data) {
         }
     }
     return data;
+}
+
+function wait(msecs) {
+    return new Promise(function(ok) {
+        setTimeout(ok, msecs);
+    });
 }
 
 window.onload = function() {

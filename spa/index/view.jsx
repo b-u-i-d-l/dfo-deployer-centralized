@@ -13,7 +13,7 @@ var Index = React.createClass({
         dFO.getToken(function (error, tA) {
             try {
                 tokenAddress = tA;
-                var token = window.web3.eth.contract(window.context.VotingTokenAbi).at(tokenAddress);
+                var token = window.web3.eth.contract(window.context.votingTokenAbi).at(tokenAddress);
                 token.name(function (error1, tN) {
                     try {
                         tokenName = tN;

@@ -22,7 +22,7 @@ var Run = React.createClass({
         delete r[element.codeName];
         this.emit('message');
         _this.setState({response: r}, function() {
-            _this.controller.call(type, element.codeName, element.inputParameters, args, element.returnAbiParametersArray).then(r => {
+            _this.controller.call(type, element.codeName, element.inputParameters, args, element.returnAbiParametersArray, element.needsSender).then(r => {
                 var response = ((_this.state && _this.state.response) || {});
                 response[element.codeName] = r;
                 _this.setState({ response });
@@ -35,7 +35,7 @@ var Run = React.createClass({
         }
         var _this = this;
         return (<ul ref={ref => element.inputParameters && element.inputParameters.length > 0 && (this[element.codeName + 'Input'] = $(ref))}>
-            {element.inputParameters.map(it => <li key={it}>
+            {element.inputParameters.map((it, i) => (!element.needsSender || i < (element.inputParameters.length - (element.submitable ? 2 : 1))) && <li key={it}>
                 <label>{it}</label>
                 {"\u00a0"}
                 {(it === 'bytes32' || it === 'address' || it === 'string' || it.indexOf('uint') == 0) && <input type={it.indexOf('uint') == 0 ? "number" : "text"} min="0" placeholder={it === 'address' ? "Insert your ethereum address" : ""}></input>}

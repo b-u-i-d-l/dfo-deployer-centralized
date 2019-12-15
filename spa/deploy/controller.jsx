@@ -15,18 +15,21 @@ var DeployController = function (view) {
             throw errors;
         }
         context.view.emit('loader/toggle');
-        context.view.emit('message', 'Transaction 1 of 4 - Creating StateHolder...', 'info');
-        var stateHolder = await createContract(window.context.stateHolderAbi, window.context.stateHolderBin, '0x0000000000000000000000000000000000000000');
-        context.view.emit('message', 'Transaction 2 of 4 - Creating MVD Functionality Proposal Manager...', 'info');
-        var mvdFunctionalityProposalManager = await createContract(window.context.mvdFunctionalityProposalManagerAbi, window.context.mvdFunctionalityProposalManagerBin);
-        context.view.emit('message', 'Transaction 3 of 4 - Creating Survey Block Length...', 'info');
-        var mvdBlockLengthProvider = await createContract(window.context.mvdBlockLengthProviderAbi, window.context.mvdBlockLengthProviderBin, data.surveyLength);
-        context.view.emit('message', 'Transaction 4 of 4 - Creating Your DFO...', 'info');
-        var dFO =  await createContract(window.context.mvdAbi, window.context.mvdBin,
+        context.view.emit('message', 'Transaction 1 of 5 - Creating VotingToken...', 'info');
+        var votingToken = await createContract(window.context.votingTokenAbi, window.context.votingTokenBin, 
             data.dfoName,
             data.tokenSymbol,
             data.tokenDecimals,
-            data.tokenTotalSupply,
+            data.tokenTotalSupply);
+        context.view.emit('message', 'Transaction 2 of 5 - Creating StateHolder...', 'info');
+        var stateHolder = await createContract(window.context.stateHolderAbi, window.context.stateHolderBin, '0x0000000000000000000000000000000000000000');
+        context.view.emit('message', 'Transaction 3 of 5 - Creating MVD Functionality Proposal Manager...', 'info');
+        var mvdFunctionalityProposalManager = await createContract(window.context.mvdFunctionalityProposalManagerAbi, window.context.mvdFunctionalityProposalManagerBin);
+        context.view.emit('message', 'Transaction 4 of 5 - Creating Survey Block Length...', 'info');
+        var mvdBlockLengthProvider = await createContract(window.context.mvdBlockLengthProviderAbi, window.context.mvdBlockLengthProviderBin, data.surveyLength);
+        context.view.emit('message', 'Transaction 5 of 5 - Creating Your DFO...', 'info');
+        var dFO =  await createContract(window.context.mvdAbi, window.context.mvdBin,
+            votingToken.address,
             stateHolder.address,
             mvdFunctionalityProposalManager.address,
             window.getRobeAddress(),
@@ -36,6 +39,8 @@ var DeployController = function (view) {
             context.view.surveyValidationRuleNFTId,
             data.surveyValidationRulesAddress
         );
+        context.view.emit('message', 'Finalizing creation...', 'info');
+        await window.wait(7000);
         context.view.emit('message');
         return dFO;
     };
