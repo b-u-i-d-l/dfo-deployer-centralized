@@ -31,6 +31,7 @@ var DeployController = function (view) {
         var dFO =  await createContract(window.context.mvdAbi, window.context.mvdBin,
             votingToken.address,
             stateHolder.address,
+            window.getMVDFunctionalityModelsManagerAddress(),
             mvdFunctionalityProposalManager.address,
             window.getRobeAddress(),
             context.view.mvdBlockLengthProviderId,

@@ -39,6 +39,10 @@ function getRobeAddress() {
     return window.web3.currentProvider.chainId === '0x3' ? context.robeAddressRopsten : context.robeAddress;
 }
 
+function getMVDFunctionalityModelsManagerAddress() {
+    return window.web3.currentProvider.chainId === '0x3' ? context.mvdFunctionalityModelsManagerRopsten : context.mvdFunctionalityModelsManager;
+}
+
 function isEthereumAddress(ad) {
     if (ad === undefined || ad === null) {
         return false;
