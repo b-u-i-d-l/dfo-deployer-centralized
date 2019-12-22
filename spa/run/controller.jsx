@@ -12,6 +12,6 @@ var RunController = function(view) {
         }
         parametersToEncode && (args = window.abi.encode(parametersToEncode, args));
         var data = await blockchainCall(context.view.props.dFO[type], codeName, args);
-        return window.decodeAbiParameters(returnAbiParametersArray, data);
+        return type === 'read' ? window.decodeAbiParameters(returnAbiParametersArray, data) : [];
     }
 };

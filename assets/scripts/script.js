@@ -130,7 +130,7 @@ async function demoMain() {
 function getData(root) {
     var data = {};
     root.children().find('input,select').each(function(i, input) {
-        input.type && input.type !== 'checkbox' && (data[input.id] = input.value.split(' ').join(''));
+        input.type && input.type !== 'checkbox' && (data[input.id] = input.value.trim());
         input.type === 'number' && (data[input.id] = parseInt(data[input.id]));
         input.type === 'number' && isNaN(data[input.id]) && (data[input.id] = 1);
         input.type === 'checkbox' && (data[input.id] = input.checked);
