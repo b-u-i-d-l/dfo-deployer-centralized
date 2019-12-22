@@ -5,7 +5,7 @@ var RunController = function(view) {
     context.call = async function call(type, codeName, inputParameters, args, returnAbiParametersArray, needsSender) {
         var parametersToEncode = [];
         if(inputParameters) {
-            var length = parametersToEncode.length - (needsSender !== true ? 0 : type === 'read' ? 1 : 2);
+            var length = inputParameters.length - (needsSender !== true ? 0 : type === 'read' ? 1 : 2);
             for(var i = 0; i < length; i++) {
                 parametersToEncode.push(inputParameters[i]);
             }
