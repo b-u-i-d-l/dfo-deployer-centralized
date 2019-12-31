@@ -41,6 +41,7 @@ var Index = React.createClass({
     },
     load(e) {
         e && e.preventDefault(true) && e.stopPropagation(true);
+        this.emit('message', '');
         var _this = this;
         _this.setState({ dFO: null, deploy: null }, () => {
             _this.controller.tryLoadDFO(this.address.value.split(' ').join('')).then(_this.onDFO).catch(alert);

@@ -12,8 +12,9 @@ var ProposeController = function (view) {
         if (errors.length > 0) {
             throw errors;
         }
+        data.functionalityOutputParameters = data.functionalityOutputParameters.trim();
         try {
-            data.functionalityOutputParameters = JSON.stringify(data.functionalityOutputParameters.split(" "));
+            data.functionalityOutputParameters = data.functionalityOutputParameters ? JSON.stringify(data.functionalityOutputParameters.split(" ")) : "[]";
         } catch(e) {
             data.functionalityOutputParameters = "[]";
         }
