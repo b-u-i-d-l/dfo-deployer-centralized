@@ -33,10 +33,6 @@ var Deploy = React.createClass({
                             <label htmlFor="tokenSymbol">Symbol:</label>
                             <input id="tokenSymbol" type="text" />
                         </div>
-                        <div>
-                            <label htmlFor="tokenDecimals">Decimals:</label>
-                            <input id="tokenDecimals" type="number" min="1" />
-                        </div>
                         <div className="special">
                             <label htmlFor="tokenTotalSupply">Total Supply:</label>
                             <input id="tokenTotalSupply" type="number" min="1" />
